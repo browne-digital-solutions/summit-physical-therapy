@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Locations | Summit Physical Therapy & Performance</title>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: Arial, sans-serif; color: #102033; background: #f7fbff; line-height: 1.6; overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; }
+    .container { width: 90%; max-width: 1200px; margin: auto; }
+    section { padding: 90px 0; }
+
+    .top-bar { background:#0b2d4d; color:white; padding:10px 5%; font-size:.9rem; display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap; }
+    .top-bar span { color:#b9ecff; }
+
+    nav { position:sticky; top:0; z-index:1000; background:rgba(255,255,255,.96); backdrop-filter:blur(14px); border-bottom:1px solid #ddebf5; }
+    .nav-inner { display:flex; align-items:center; justify-content:space-between; padding:18px 5%; }
+    .logo { font-size:1.35rem; font-weight:900; color:#0b2d4d; line-height:1.1; }
+    .logo span { color:#159bd3; }
+    .nav-links { display:flex; align-items:center; gap:20px; font-weight:700; font-size:.92rem; color:#41556b; }
+    .nav-links a:hover { color:#159bd3; }
+    .nav-cta { background:#159bd3; color:white!important; padding:11px 18px; border-radius:999px; }
+    .mobile-toggle { display:none; font-size:1.7rem; cursor:pointer; color:#0b2d4d; }
+
+    .hero {
+      min-height:70vh;
+      display:grid;
+      align-items:center;
+      background:linear-gradient(90deg,rgba(8,45,77,.94),rgba(8,45,77,.62)),
+      url("https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=1800&q=80") center/cover no-repeat;
+      color:white;
+      padding:95px 0;
+    }
+
+    .hero-content { max-width:790px; }
+    .eyebrow { color:#7ddcff; text-transform:uppercase; letter-spacing:2px; font-weight:900; font-size:.85rem; margin-bottom:16px; }
+    .hero h1 { font-size:clamp(3rem,7vw,5.4rem); line-height:1; margin-bottom:24px; letter-spacing:-2px; }
+    .hero p { font-size:1.18rem; max-width:700px; color:#e6f6ff; margin-bottom:34px; }
+
+    .btn-group { display:flex; gap:14px; flex-wrap:wrap; }
+    .btn { display:inline-block; padding:15px 24px; border-radius:999px; font-weight:900; transition:.3s ease; }
+    .btn-primary { background:#159bd3; color:white; box-shadow:0 14px 35px rgba(21,155,211,.3); }
+    .btn-primary:hover { background:#0c78a8; transform:translateY(-3px); }
+    .btn-light { background:white; color:#0b2d4d; }
+    .btn-light:hover { transform:translateY(-3px); background:#eaf7fc; }
+
+    .section-title { text-align:center; max-width:850px; margin:0 auto 55px; }
+    .section-title span { color:#159bd3; text-transform:uppercase; font-weight:900; letter-spacing:2px; font-size:.85rem; }
+    .section-title h2 { font-size:clamp(2rem,5vw,3.2rem); color:#0b2d4d; margin-top:12px; line-height:1.1; }
+    .section-title p { color:#5e7388; margin-top:15px; font-size:1.05rem; }
+
+    .locations { background:white; }
+    .location-card {
+      background:#ffffff;
+      border:1px solid #dceaf3;
+      border-radius:30px;
+      box-shadow:0 18px 45px rgba(16,32,51,.1);
+      overflow:hidden;
+      margin-bottom:34px;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+    }
+
+    .location-info { padding:42px; }
+    .location-info h3 { color:#0b2d4d; font-size:2rem; line-height:1.1; margin-bottom:14px; }
+    .location-info p { color:#60758b; margin-bottom:10px; }
+
+    .hours {
+      margin-top:22px;
+      background:#f7fbff;
+      border:1px solid #dceaf3;
+      border-radius:20px;
+      padding:22px;
+    }
+
+    .hours h4, .services-list h4 { color:#0b2d4d; margin-bottom:12px; }
+    .hours-row { display:flex; justify-content:space-between; border-bottom:1px solid #dceaf3; padding:8px 0; color:#60758b; gap:20px; }
+    .hours-row:last-child { border-bottom:none; }
+
+    .services-list { margin-top:22px; }
+    .pills { display:flex; flex-wrap:wrap; gap:10px; }
+    .pill { background:#e5f7ff; color:#0b2d4d; padding:8px 12px; border-radius:999px; font-size:.85rem; font-weight:800; }
+
+    .map-card {
+      background:linear-gradient(135deg,#e5f7ff,#f7fbff);
+      min-height:100%;
+      display:grid;
+      place-items:center;
+      padding:35px;
+      border-left:1px solid #dceaf3;
+    }
+
+    .map-box {
+      width:100%;
+      height:100%;
+      min-height:420px;
+      border-radius:24px;
+      background:
+        linear-gradient(135deg,rgba(11,45,77,.84),rgba(21,155,211,.7)),
+        url("https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=1200&q=80") center/cover no-repeat;
+      color:white;
+      display:grid;
+      place-items:center;
+      text-align:center;
+      padding:30px;
+      box-shadow:0 18px 45px rgba(16,32,51,.15);
+    }
+
+    .map-box h4 { font-size:1.7rem; margin-bottom:10px; }
+    .map-box p { color:#e6f6ff; }
+
+    .service-area { background:#eef7fc; }
+    .area-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
+    .area-card {
+      background:white;
+      border:1px solid #dceaf3;
+      border-radius:20px;
+      padding:24px;
+      text-align:center;
+      box-shadow:0 12px 30px rgba(16,32,51,.06);
+      font-weight:900;
+      color:#0b2d4d;
+    }
+
+    .accessibility { background:white; }
+    .grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:22px; }
+    .card {
+      background:white;
+      padding:30px;
+      border-radius:24px;
+      border:1px solid #dceaf3;
+      box-shadow:0 16px 40px rgba(16,32,51,.08);
+      transition:.3s ease;
+    }
+
+    .card:hover { transform:translateY(-7px); box-shadow:0 22px 55px rgba(16,32,51,.13); }
+    .icon { width:54px; height:54px; border-radius:16px; display:grid; place-items:center; background:#e5f7ff; color:#159bd3; font-size:1.7rem; margin-bottom:18px; }
+    .card h3 { color:#0b2d4d; margin-bottom:10px; font-size:1.25rem; }
+    .card p { color:#60758b; }
+
+    .cta { background:linear-gradient(135deg,#159bd3,#0b2d4d); color:white; text-align:center; }
+    .cta h2 { font-size:clamp(2rem,5vw,3.3rem); margin-bottom:16px; }
+    .cta p { color:#d7ecf8; max-width:720px; margin:0 auto 30px; font-size:1.08rem; }
+
+    footer { background:#071f36; color:#c5d8e8; padding:60px 0 30px; }
+    .footer-grid { display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr; gap:35px; margin-bottom:35px; }
+    footer h3, footer h4 { color:white; margin-bottom:16px; }
+    footer a { display:block; color:#c5d8e8; margin-bottom:9px; font-size:.95rem; }
+    footer a:hover { color:#7ddcff; }
+    .disclaimer { border-top:1px solid rgba(255,255,255,.12); padding-top:22px; font-size:.85rem; color:#9fb4c5; }
+
+    @media(max-width:950px) {
+      .mobile-toggle { display:block; }
+      .nav-links { display:none; position:absolute; top:72px; left:0; width:100%; background:white; padding:20px 5%; flex-direction:column; align-items:flex-start; border-bottom:1px solid #dceaf3; }
+      .nav-links.active { display:flex; }
+      .location-card, .area-grid, .grid-4, .footer-grid { grid-template-columns:1fr; }
+      .map-card { border-left:none; border-top:1px solid #dceaf3; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="top-bar">
+    <div><span>Call:</span> (631) 555-0248</div>
+    <div><span>Locations:</span> Huntington & Smithtown, NY</div>
+    <div><span>Email:</span> info@summitptperformance.com</div>
+  </div>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="logo">Summit <span>PT & Performance</span></a>
+      <div class="mobile-toggle" onclick="toggleMenu()">☰</div>
+
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="conditions.html">Conditions</a>
+        <a href="sports-rehab.html">Sports Rehab</a>
+        <a href="patient-info.html">Patient Info</a>
+        <a href="insurance.html">Insurance</a>
+        <a href="locations.html">Locations</a>
+        <a href="blog.html">Blog</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html" class="nav-cta">Request Appointment</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container hero-content">
+      <div class="eyebrow">Long Island Locations</div>
+      <h1>Convenient Physical Therapy Locations Across Long Island</h1>
+      <p>Visit Summit Physical Therapy & Performance in Huntington or Smithtown for personalized physical therapy, sports rehabilitation, and performance-focused care.</p>
+
+      <div class="btn-group">
+        <a href="contact.html" class="btn btn-primary">Request Appointment</a>
+        <a href="tel:6315550248" class="btn btn-light">Call Now</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="locations">
+    <div class="container">
+      <div class="section-title">
+        <span>Our Clinics</span>
+        <h2>Choose the location that works best for you</h2>
+        <p>Both Summit locations provide a modern, welcoming environment for physical therapy, sports rehab, and movement-focused care.</p>
+      </div>
+
+      <div class="location-card">
+        <div class="location-info">
+          <h3>Summit Physical Therapy & Performance - Huntington</h3>
+          <p><strong>Address:</strong> 214 Harborview Road, Huntington, NY 11743</p>
+          <p><strong>Phone:</strong> (631) 555-0248</p>
+          <p><strong>Email:</strong> huntington@summitptperformance.com</p>
+
+          <div class="hours">
+            <h4>Office Hours</h4>
+            <div class="hours-row"><span>Monday - Friday</span><span>7:00 AM - 7:00 PM</span></div>
+            <div class="hours-row"><span>Saturday</span><span>8:00 AM - 1:00 PM</span></div>
+            <div class="hours-row"><span>Sunday</span><span>Closed</span></div>
+          </div>
+
+          <div class="services-list">
+            <h4>Services Available</h4>
+            <div class="pills">
+              <span class="pill">Physical Therapy</span>
+              <span class="pill">Sports Rehab</span>
+              <span class="pill">Post-Surgical Rehab</span>
+              <span class="pill">Manual Therapy</span>
+              <span class="pill">Balance Training</span>
+            </div>
+          </div>
+
+          <br>
+          <a href="contact.html" class="btn btn-primary">Schedule at Huntington</a>
+        </div>
+
+        <div class="map-card">
+          <div class="map-box">
+            <div>
+              <h4>Huntington Map</h4>
+              <p>Interactive Google Map would be embedded here for a real client website.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="location-card">
+        <div class="location-info">
+          <h3>Summit Physical Therapy & Performance - Smithtown</h3>
+          <p><strong>Address:</strong> 88 Maple Crossing, Smithtown, NY 11787</p>
+          <p><strong>Phone:</strong> (631) 555-0281</p>
+          <p><strong>Email:</strong> smithtown@summitptperformance.com</p>
+
+          <div class="hours">
+            <h4>Office Hours</h4>
+            <div class="hours-row"><span>Monday - Friday</span><span>8:00 AM - 6:00 PM</span></div>
+            <div class="hours-row"><span>Saturday</span><span>By Appointment</span></div>
+            <div class="hours-row"><span>Sunday</span><span>Closed</span></div>
+          </div>
+
+          <div class="services-list">
+            <h4>Services Available</h4>
+            <div class="pills">
+              <span class="pill">Physical Therapy</span>
+              <span class="pill">Sports Rehab</span>
+              <span class="pill">Post-Surgical Rehab</span>
+              <span class="pill">Strength & Conditioning</span>
+              <span class="pill">Injury Prevention</span>
+            </div>
+          </div>
+
+          <br>
+          <a href="contact.html" class="btn btn-primary">Schedule at Smithtown</a>
+        </div>
+
+        <div class="map-card">
+          <div class="map-box">
+            <div>
+              <h4>Smithtown Map</h4>
+              <p>Interactive Google Map would be embedded here for a real client website.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="service-area">
+    <div class="container">
+      <div class="section-title">
+        <span>Service Areas</span>
+        <h2>Serving communities across Long Island</h2>
+        <p>Summit welcomes patients from Suffolk County, Nassau County, and surrounding communities.</p>
+      </div>
+
+      <div class="area-grid">
+        <div class="area-card">Huntington</div>
+        <div class="area-card">Smithtown</div>
+        <div class="area-card">Commack</div>
+        <div class="area-card">Northport</div>
+        <div class="area-card">East Northport</div>
+        <div class="area-card">Dix Hills</div>
+        <div class="area-card">Melville</div>
+        <div class="area-card">Kings Park</div>
+        <div class="area-card">Hauppauge</div>
+        <div class="area-card">Centerport</div>
+        <div class="area-card">Greenlawn</div>
+        <div class="area-card">Huntington Station</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="accessibility">
+    <div class="container">
+      <div class="section-title">
+        <span>Parking & Accessibility</span>
+        <h2>Designed to make each visit easier</h2>
+      </div>
+
+      <div class="grid-4">
+        <div class="card">
+          <div class="icon">🅿️</div>
+          <h3>Free Parking</h3>
+          <p>Convenient parking is available at both clinic locations.</p>
+        </div>
+
+        <div class="card">
+          <div class="icon">♿</div>
+          <h3>Accessible Entrances</h3>
+          <p>Both locations are designed with accessibility and patient comfort in mind.</p>
+        </div>
+
+        <div class="card">
+          <div class="icon">🚪</div>
+          <h3>Ground Floor Access</h3>
+          <p>Easy entry and clinic access for patients with mobility concerns.</p>
+        </div>
+
+        <div class="card">
+          <div class="icon">🧭</div>
+          <h3>Easy Navigation</h3>
+          <p>Clear office layout and helpful staff make each visit simple.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="container">
+      <h2>Find the location that's right for you.</h2>
+      <p>Request an appointment at our Huntington or Smithtown clinic and take the next step toward moving better.</p>
+
+      <div class="btn-group" style="justify-content:center;">
+        <a href="contact.html" class="btn btn-light">Request Appointment</a>
+        <a href="tel:6315550248" class="btn btn-primary">Call Now</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <h3>Summit Physical Therapy & Performance</h3>
+        <p>Personalized physical therapy and sports rehabilitation for Long Island patients.</p>
+        <br>
+        <p><strong>Phone:</strong> (631) 555-0248</p>
+        <p><strong>Email:</strong> info@summitptperformance.com</p>
+      </div>
+
+      <div>
+        <h4>Quick Links</h4>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="conditions.html">Conditions</a>
+        <a href="sports-rehab.html">Sports Rehab</a>
+        <a href="contact.html">Contact</a>
+      </div>
+
+      <div>
+        <h4>Services</h4>
+        <a href="services.html">Physical Therapy</a>
+        <a href="services.html">Sports Rehab</a>
+        <a href="services.html">Post-Surgical Rehab</a>
+        <a href="services.html">Balance Training</a>
+      </div>
+
+      <div>
+        <h4>Locations</h4>
+        <a href="locations.html">Huntington</a>
+        <a href="locations.html">Smithtown</a>
+        <a href="patient-info.html">Patient Info</a>
+        <a href="insurance.html">Insurance</a>
+      </div>
+    </div>
+
+    <div class="container disclaimer">
+      Website content is for general informational purposes only and is not medical advice. Please consult a licensed healthcare professional for diagnosis and treatment recommendations.
+      <br><br>
+      © 2026 Summit Physical Therapy & Performance. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("navLinks").classList.toggle("active");
+    }
+  </script>
+
+</body>
+</html>
