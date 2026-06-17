@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sports Rehabilitation | Summit Physical Therapy & Performance</title>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: Arial, sans-serif; color: #102033; background: #f7fbff; line-height: 1.6; overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+    .container { width: 90%; max-width: 1200px; margin: auto; }
+    section { padding: 90px 0; }
+
+    .top-bar {
+      background: #0b2d4d;
+      color: white;
+      padding: 10px 5%;
+      font-size: 0.9rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .top-bar span { color: #b9ecff; }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid #ddebf5;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 5%;
+    }
+
+    .logo {
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: #0b2d4d;
+      line-height: 1.1;
+    }
+
+    .logo span { color: #159bd3; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: #41556b;
+    }
+
+    .nav-links a:hover { color: #159bd3; }
+
+    .nav-cta {
+      background: #159bd3;
+      color: white !important;
+      padding: 11px 18px;
+      border-radius: 999px;
+    }
+
+    .mobile-toggle {
+      display: none;
+      font-size: 1.7rem;
+      cursor: pointer;
+      color: #0b2d4d;
+    }
+
+    .hero {
+      min-height: 78vh;
+      display: grid;
+      align-items: center;
+      background:
+        linear-gradient(90deg, rgba(8,45,77,0.94), rgba(8,45,77,0.56)),
+        url("https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1800&q=80") center/cover no-repeat;
+      color: white;
+      padding: 95px 0;
+    }
+
+    .hero-content { max-width: 790px; }
+
+    .eyebrow {
+      color: #7ddcff;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 900;
+      font-size: 0.85rem;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      line-height: 1;
+      margin-bottom: 24px;
+      letter-spacing: -2px;
+    }
+
+    .hero p {
+      font-size: 1.18rem;
+      max-width: 700px;
+      color: #e6f6ff;
+      margin-bottom: 34px;
+    }
+
+    .btn-group { display: flex; gap: 14px; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-block;
+      padding: 15px 24px;
+      border-radius: 999px;
+      font-weight: 900;
+      transition: 0.3s ease;
+    }
+
+    .btn-primary {
+      background: #159bd3;
+      color: white;
+      box-shadow: 0 14px 35px rgba(21,155,211,0.3);
+    }
+
+    .btn-primary:hover {
+      background: #0c78a8;
+      transform: translateY(-3px);
+    }
+
+    .btn-light {
+      background: white;
+      color: #0b2d4d;
+    }
+
+    .btn-light:hover {
+      transform: translateY(-3px);
+      background: #eaf7fc;
+    }
+
+    .section-title {
+      text-align: center;
+      max-width: 850px;
+      margin: 0 auto 55px;
+    }
+
+    .section-title span {
+      color: #159bd3;
+      text-transform: uppercase;
+      font-weight: 900;
+      letter-spacing: 2px;
+      font-size: 0.85rem;
+    }
+
+    .section-title h2 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      color: #0b2d4d;
+      margin-top: 12px;
+      line-height: 1.1;
+    }
+
+    .section-title p {
+      color: #5e7388;
+      margin-top: 15px;
+      font-size: 1.05rem;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 55px;
+      align-items: center;
+    }
+
+    .split img {
+      border-radius: 28px;
+      height: 520px;
+      width: 100%;
+      object-fit: cover;
+      box-shadow: 0 22px 60px rgba(16,32,51,0.14);
+    }
+
+    .split h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: #0b2d4d;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .split p {
+      color: #60758b;
+      margin-bottom: 18px;
+    }
+
+    .athletes {
+      background: white;
+    }
+
+    .athlete-grid,
+    .injury-grid,
+    .training-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 24px;
+      border: 1px solid #dceaf3;
+      box-shadow: 0 16px 40px rgba(16,32,51,0.08);
+      transition: 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 22px 55px rgba(16,32,51,0.13);
+    }
+
+    .icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: #e5f7ff;
+      color: #159bd3;
+      font-size: 1.7rem;
+      margin-bottom: 18px;
+    }
+
+    .card h3 {
+      color: #0b2d4d;
+      margin-bottom: 10px;
+      font-size: 1.25rem;
+    }
+
+    .card p {
+      color: #60758b;
+    }
+
+    .evaluation {
+      background: #eef7fc;
+    }
+
+    .process {
+      background: white;
+    }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 18px;
+    }
+
+    .step {
+      background: #f7fbff;
+      border: 1px solid #dceaf3;
+      border-radius: 24px;
+      padding: 26px;
+      box-shadow: 0 14px 34px rgba(16,32,51,0.06);
+    }
+
+    .step-number {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #159bd3;
+      color: white;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      margin-bottom: 16px;
+    }
+
+    .step h3 {
+      color: #0b2d4d;
+      margin-bottom: 10px;
+    }
+
+    .step p {
+      color: #60758b;
+      font-size: 0.95rem;
+    }
+
+    .injuries {
+      background: #eef7fc;
+    }
+
+    .performance {
+      background:
+        linear-gradient(135deg, rgba(11,45,77,0.96), rgba(10,89,124,0.9)),
+        url("https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
+      color: white;
+    }
+
+    .performance .section-title h2,
+    .performance .section-title p {
+      color: white;
+    }
+
+    .performance .card {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.16);
+      backdrop-filter: blur(10px);
+      box-shadow: none;
+    }
+
+    .performance .card h3 {
+      color: white;
+    }
+
+    .performance .card p {
+      color: #d7ecf8;
+    }
+
+    .sports-note {
+      background: white;
+    }
+
+    .notice-box {
+      background: #eef7fc;
+      border: 1px solid #cce7f5;
+      border-left: 6px solid #159bd3;
+      border-radius: 20px;
+      padding: 28px;
+      color: #40566d;
+      max-width: 950px;
+      margin: auto;
+    }
+
+    .notice-box strong {
+      color: #0b2d4d;
+      display: block;
+      margin-bottom: 8px;
+      font-size: 1.15rem;
+    }
+
+    .cta {
+      background: linear-gradient(135deg, #159bd3, #0b2d4d);
+      color: white;
+      text-align: center;
+    }
+
+    .cta h2 {
+      font-size: clamp(2rem, 5vw, 3.3rem);
+      margin-bottom: 16px;
+    }
+
+    .cta p {
+      color: #d7ecf8;
+      max-width: 720px;
+      margin: 0 auto 30px;
+      font-size: 1.08rem;
+    }
+
+    footer {
+      background: #071f36;
+      color: #c5d8e8;
+      padding: 60px 0 30px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 35px;
+      margin-bottom: 35px;
+    }
+
+    footer h3,
+    footer h4 {
+      color: white;
+      margin-bottom: 16px;
+    }
+
+    footer a {
+      display: block;
+      color: #c5d8e8;
+      margin-bottom: 9px;
+      font-size: 0.95rem;
+    }
+
+    footer a:hover {
+      color: #7ddcff;
+    }
+
+    .disclaimer {
+      border-top: 1px solid rgba(255,255,255,0.12);
+      padding-top: 22px;
+      font-size: 0.85rem;
+      color: #9fb4c5;
+    }
+
+    @media (max-width: 950px) {
+      .mobile-toggle { display: block; }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        width: 100%;
+        background: white;
+        padding: 20px 5%;
+        flex-direction: column;
+        align-items: flex-start;
+        border-bottom: 1px solid #dceaf3;
+      }
+
+      .nav-links.active { display: flex; }
+
+      .split,
+      .athlete-grid,
+      .injury-grid,
+      .training-grid,
+      .timeline,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .split img {
+        height: 360px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="top-bar">
+    <div><span>Call:</span> (631) 555-0248</div>
+    <div><span>Locations:</span> Huntington & Smithtown, NY</div>
+    <div><span>Email:</span> info@summitptperformance.com</div>
+  </div>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="logo">Summit <span>PT & Performance</span></a>
+
+      <div class="mobile-toggle" onclick="toggleMenu()">☰</div>
+
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="conditions.html">Conditions</a>
+        <a href="sports-rehab.html">Sports Rehab</a>
+        <a href="patient-info.html">Patient Info</a>
+        <a href="insurance.html">Insurance</a>
+        <a href="locations.html">Locations</a>
+        <a href="blog.html">Blog</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html" class="nav-cta">Request Appointment</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container hero-content">
+      <div class="eyebrow">Sports Rehabilitation</div>
+      <h1>Sports Rehabilitation Designed for a Stronger Return</h1>
+      <p>Athlete-focused rehabilitation, return-to-sport progressions, injury prevention, and performance training for athletes and active adults across Long Island.</p>
+
+      <div class="btn-group">
+        <a href="contact.html" class="btn btn-primary">Request Appointment</a>
+        <a href="services.html" class="btn btn-light">View Services</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="athletes">
+    <div class="container">
+      <div class="section-title">
+        <span>Who We Help</span>
+        <h2>Built for athletes and active adults</h2>
+        <p>Sports rehabilitation at Summit is designed around the demands of your sport, activity level, training goals, and long-term movement confidence.</p>
+      </div>
+
+      <div class="athlete-grid">
+        <div class="card"><div class="icon">🏫</div><h3>High School Athletes</h3><p>Support for student athletes working toward a confident return to practice, training, and competition.</p></div>
+        <div class="card"><div class="icon">🎓</div><h3>College Athletes</h3><p>Performance-focused rehabilitation for athletes managing higher training demands and competitive schedules.</p></div>
+        <div class="card"><div class="icon">🏃</div><h3>Runners</h3><p>Movement, strength, mobility, and training support for recreational and competitive runners.</p></div>
+        <div class="card"><div class="icon">🏋️</div><h3>Lifters</h3><p>Rehab and movement work for patients returning to strength training and gym-based activity.</p></div>
+        <div class="card"><div class="icon">⛳</div><h3>Golfers</h3><p>Mobility, rotation, balance, and strength support for golfers looking to move efficiently.</p></div>
+        <div class="card"><div class="icon">⚽</div><h3>Field & Court Athletes</h3><p>Support for soccer, basketball, baseball, lacrosse, and other sport-specific demands.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="evaluation">
+    <div class="container split">
+      <div>
+        <img src="https://images.unsplash.com/photo-1599058917212-d750089bc07e?auto=format&fit=crop&w=1200&q=80" alt="Athlete training in rehabilitation gym">
+      </div>
+
+      <div>
+        <div class="eyebrow">Athlete-Focused Evaluation</div>
+        <h2>We look beyond the injury.</h2>
+        <p>Sports rehabilitation starts with understanding how the athlete moves, trains, competes, and performs. The goal is to build a plan that fits the demands of the sport and the individual.</p>
+        <p>Evaluations may include strength testing, mobility assessment, movement screening, balance work, and discussion of training history and goals.</p>
+
+        <div class="btn-group">
+          <a href="contact.html" class="btn btn-primary">Schedule Evaluation</a>
+          <a href="conditions.html" class="btn btn-light" style="border:1px solid #dceaf3;">Common Injuries</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="process">
+    <div class="container">
+      <div class="section-title">
+        <span>Return-To-Sport Process</span>
+        <h2>A structured path back to activity</h2>
+        <p>Every athlete progresses differently. Our process is designed to help guide the transition from rehab to performance with clear milestones and individualized progression.</p>
+      </div>
+
+      <div class="timeline">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Restore Mobility</h3>
+          <p>Address movement limitations, comfort, and early activity tolerance.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>Build Strength</h3>
+          <p>Develop control, stability, and strength for sport-specific demands.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Reintroduce Movement</h3>
+          <p>Gradually progress running, jumping, cutting, lifting, or throwing patterns.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">4</div>
+          <h3>Progress Confidence</h3>
+          <p>Use structured drills and progressions to rebuild trust in movement.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">5</div>
+          <h3>Return Stronger</h3>
+          <p>Support the transition back to sport, training, and long-term performance.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="injuries">
+    <div class="container">
+      <div class="section-title">
+        <span>Common Sports Injuries</span>
+        <h2>Support for athletes recovering from injury</h2>
+        <p>The information below is educational and not medical advice. Every athlete should consult a licensed healthcare professional for condition-specific care.</p>
+      </div>
+
+      <div class="injury-grid">
+        <div class="card"><div class="icon">🦵</div><h3>ACL Rehabilitation</h3><p>Structured support for athletes progressing through strength, control, and return-to-sport milestones after ACL-related procedures.</p></div>
+        <div class="card"><div class="icon">🦶</div><h3>Ankle Sprains</h3><p>Programs focused on mobility, strength, balance, coordination, and confidence returning to activity.</p></div>
+        <div class="card"><div class="icon">💪</div><h3>Rotator Cuff Injuries</h3><p>Shoulder-focused rehabilitation for athletes working on strength, mobility, control, and sport demands.</p></div>
+        <div class="card"><div class="icon">🏃</div><h3>Runner’s Knee</h3><p>Support for runners addressing strength, training load, mobility, and movement patterns.</p></div>
+        <div class="card"><div class="icon">⚡</div><h3>Hamstring Strains</h3><p>Progressive strengthening and activity return for athletes working back toward sprinting and sport.</p></div>
+        <div class="card"><div class="icon">🏋️</div><h3>Lower Back Pain in Athletes</h3><p>Movement-based programs for active individuals experiencing back discomfort during training or sport.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="performance">
+    <div class="container">
+      <div class="section-title">
+        <span>Performance Training</span>
+        <h2>Rehab that prepares you for real activity</h2>
+        <p>Sports rehab is not only about feeling better. It is about building the physical qualities needed to move, train, and compete with confidence.</p>
+      </div>
+
+      <div class="training-grid">
+        <div class="card"><div class="icon">💪</div><h3>Strength</h3><p>Progressive strength work built around the athlete’s needs, goals, and sport demands.</p></div>
+        <div class="card"><div class="icon">⚡</div><h3>Agility</h3><p>Controlled progressions for cutting, change of direction, and dynamic movement.</p></div>
+        <div class="card"><div class="icon">🔄</div><h3>Mobility</h3><p>Work designed to improve movement options, range, and control.</p></div>
+        <div class="card"><div class="icon">⚖️</div><h3>Balance</h3><p>Stability and coordination drills for better control during athletic movement.</p></div>
+        <div class="card"><div class="icon">🏁</div><h3>Conditioning</h3><p>Gradual activity progression designed around the athlete’s current ability and sport demands.</p></div>
+        <div class="card"><div class="icon">🎯</div><h3>Confidence</h3><p>Milestone-based progressions that help athletes feel prepared for return to activity.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sports-note">
+    <div class="container">
+      <div class="notice-box">
+        <strong>Sports Rehab Disclaimer</strong>
+        This page is for general informational purposes only and does not provide medical advice, diagnosis, or treatment recommendations. Return-to-sport decisions should be made with appropriate healthcare professionals based on individual circumstances.
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="container">
+      <h2>Get back to the activities you love.</h2>
+      <p>Request an appointment with Summit Physical Therapy & Performance and learn how our team can help you work toward your athletic and movement goals.</p>
+
+      <div class="btn-group" style="justify-content:center;">
+        <a href="contact.html" class="btn btn-light">Request Appointment</a>
+        <a href="tel:6315550248" class="btn btn-primary">Call Now</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <h3>Summit Physical Therapy & Performance</h3>
+        <p>Personalized physical therapy and sports rehabilitation for Long Island patients.</p>
+        <br>
+        <p><strong>Phone:</strong> (631) 555-0248</p>
+        <p><strong>Email:</strong> info@summitptperformance.com</p>
+      </div>
+
+      <div>
+        <h4>Quick Links</h4>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="conditions.html">Conditions</a>
+        <a href="sports-rehab.html">Sports Rehab</a>
+        <a href="contact.html">Contact</a>
+      </div>
+
+      <div>
+        <h4>Services</h4>
+        <a href="services.html">Physical Therapy</a>
+        <a href="services.html">Sports Rehab</a>
+        <a href="services.html">Post-Surgical Rehab</a>
+        <a href="services.html">Balance Training</a>
+      </div>
+
+      <div>
+        <h4>Locations</h4>
+        <a href="locations.html">Huntington</a>
+        <a href="locations.html">Smithtown</a>
+        <a href="patient-info.html">Patient Info</a>
+        <a href="insurance.html">Insurance</a>
+      </div>
+    </div>
+
+    <div class="container disclaimer">
+      Website content is for general informational purposes only and is not medical advice. Please consult a licensed healthcare professional for diagnosis and treatment recommendations.
+      <br><br>
+      © 2026 Summit Physical Therapy & Performance. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("navLinks").classList.toggle("active");
+    }
+  </script>
+
+</body>
+</html>
