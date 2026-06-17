@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us | Summit Physical Therapy & Performance</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:Arial,sans-serif;
+background:#f7fbff;
+color:#102033;
+line-height:1.6;
+}
+
+a{
+text-decoration:none;
+color:inherit;
+}
+
+.container{
+width:90%;
+max-width:1200px;
+margin:auto;
+}
+
+section{
+padding:90px 0;
+}
+
+.top-bar{
+background:#0b2d4d;
+color:white;
+padding:10px 5%;
+display:flex;
+justify-content:space-between;
+flex-wrap:wrap;
+}
+
+nav{
+background:white;
+border-bottom:1px solid #ddebf5;
+position:sticky;
+top:0;
+z-index:1000;
+}
+
+.nav-inner{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:18px 5%;
+}
+
+.logo{
+font-size:1.4rem;
+font-weight:900;
+color:#0b2d4d;
+}
+
+.logo span{
+color:#159bd3;
+}
+
+.nav-links{
+display:flex;
+gap:20px;
+font-weight:700;
+}
+
+.nav-cta{
+background:#159bd3;
+padding:10px 18px;
+border-radius:999px;
+color:white;
+}
+
+.hero{
+min-height:60vh;
+display:flex;
+align-items:center;
+background:
+linear-gradient(rgba(8,45,77,.85),rgba(8,45,77,.85)),
+url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1800&q=80');
+background-size:cover;
+background-position:center;
+color:white;
+}
+
+.hero h1{
+font-size:clamp(3rem,7vw,5rem);
+margin-bottom:20px;
+}
+
+.hero p{
+font-size:1.2rem;
+max-width:700px;
+}
+
+.section-title{
+text-align:center;
+margin-bottom:50px;
+}
+
+.section-title span{
+color:#159bd3;
+font-weight:900;
+text-transform:uppercase;
+letter-spacing:2px;
+}
+
+.section-title h2{
+font-size:clamp(2rem,5vw,3rem);
+color:#0b2d4d;
+margin-top:10px;
+}
+
+.contact-grid{
+display:grid;
+grid-template-columns:1.2fr .8fr;
+gap:35px;
+}
+
+.form-card,
+.info-card,
+.location-card,
+.method-card{
+background:white;
+border-radius:24px;
+padding:35px;
+border:1px solid #dceaf3;
+box-shadow:0 16px 40px rgba(16,32,51,.08);
+}
+
+.form-row{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:15px;
+margin-bottom:15px;
+}
+
+input,
+select,
+textarea{
+width:100%;
+padding:14px;
+border:1px solid #dceaf3;
+border-radius:12px;
+font-size:1rem;
+}
+
+textarea{
+height:140px;
+resize:none;
+}
+
+.submit-btn{
+width:100%;
+background:#159bd3;
+color:white;
+padding:16px;
+border:none;
+border-radius:999px;
+font-size:1rem;
+font-weight:900;
+cursor:pointer;
+margin-top:15px;
+}
+
+.submit-btn:hover{
+background:#0c78a8;
+}
+
+.info-card h3,
+.location-card h3,
+.method-card h3{
+margin-bottom:12px;
+color:#0b2d4d;
+}
+
+.info-item{
+margin-bottom:20px;
+}
+
+.hours{
+margin-top:25px;
+padding-top:20px;
+border-top:1px solid #dceaf3;
+}
+
+.locations{
+background:#eef7fc;
+}
+
+.location-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:25px;
+}
+
+.location-buttons{
+margin-top:20px;
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+}
+
+.btn{
+display:inline-block;
+padding:12px 18px;
+border-radius:999px;
+font-weight:800;
+}
+
+.btn-primary{
+background:#159bd3;
+color:white;
+}
+
+.btn-outline{
+border:2px solid #159bd3;
+color:#159bd3;
+}
+
+.notice{
+background:white;
+}
+
+.notice-box{
+max-width:900px;
+margin:auto;
+background:#fff7e8;
+border-left:6px solid #f5a623;
+padding:30px;
+border-radius:20px;
+}
+
+.notice-box h3{
+margin-bottom:10px;
+color:#0b2d4d;
+}
+
+.map-section{
+background:#eef7fc;
+}
+
+.map-placeholder{
+height:450px;
+border-radius:24px;
+background:#dbe8f2;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+font-size:1.3rem;
+font-weight:700;
+color:#4b6278;
+padding:30px;
+}
+
+.methods-grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:20px;
+}
+
+.method-card{
+text-align:center;
+}
+
+.method-icon{
+font-size:2.5rem;
+margin-bottom:15px;
+}
+
+.cta{
+background:linear-gradient(135deg,#159bd3,#0b2d4d);
+color:white;
+text-align:center;
+}
+
+.cta h2{
+font-size:clamp(2rem,5vw,3rem);
+margin-bottom:15px;
+}
+
+.cta p{
+margin-bottom:25px;
+}
+
+.cta-btn{
+display:inline-block;
+background:white;
+color:#0b2d4d;
+padding:15px 25px;
+border-radius:999px;
+font-weight:900;
+}
+
+footer{
+background:#071f36;
+color:#c5d8e8;
+padding:60px 0 30px;
+}
+
+.footer-grid{
+display:grid;
+grid-template-columns:1.5fr 1fr 1fr 1fr;
+gap:30px;
+}
+
+footer h4{
+color:white;
+margin-bottom:15px;
+}
+
+footer a{
+display:block;
+margin-bottom:8px;
+}
+
+.disclaimer{
+border-top:1px solid rgba(255,255,255,.12);
+margin-top:30px;
+padding-top:20px;
+font-size:.85rem;
+}
+
+@media(max-width:950px){
+
+.contact-grid,
+.location-grid,
+.methods-grid,
+.footer-grid{
+grid-template-columns:1fr;
+}
+
+.form-row{
+grid-template-columns:1fr;
+}
+
+.nav-links{
+display:none;
+}
+}
+</style>
+</head>
+
+<body>
+
+<div class="top-bar">
+<div>(631) 555-0248</div>
+<div>Huntington & Smithtown, NY</div>
+<div>info@summitptperformance.com</div>
+</div>
+
+<nav>
+<div class="nav-inner">
+<div class="logo">Summit <span>PT & Performance</span></div>
+
+<div class="nav-links">
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="services.html">Services</a>
+<a href="conditions.html">Conditions</a>
+<a href="sports-rehab.html">Sports Rehab</a>
+<a href="patient-info.html">Patient Info</a>
+<a href="insurance.html">Insurance</a>
+<a href="locations.html">Locations</a>
+<a href="faq.html">FAQ</a>
+<a href="contact.html" class="nav-cta">Request Appointment</a>
+</div>
+</div>
+</nav>
+
+<header class="hero">
+<div class="container">
+<h1>Contact Summit Physical Therapy & Performance</h1>
+<p>Schedule an appointment, ask a question, or speak directly with our team.</p>
+</div>
+</header>
+
+<section>
+<div class="container">
+
+<div class="section-title">
+<span>Get Started</span>
+<h2>Request An Appointment</h2>
+</div>
+
+<div class="contact-grid">
+
+<div class="form-card">
+
+<form>
+
+<div class="form-row">
+<input type="text" placeholder="First Name">
+<input type="text" placeholder="Last Name">
+</div>
+
+<div class="form-row">
+<input type="email" placeholder="Email Address">
+<input type="tel" placeholder="Phone Number">
+</div>
+
+<div class="form-row">
+<select>
+<option>Preferred Location</option>
+<option>Huntington</option>
+<option>Smithtown</option>
+</select>
+
+<select>
+<option>Preferred Appointment Time</option>
+<option>Morning</option>
+<option>Afternoon</option>
+<option>Evening</option>
+</select>
+</div>
+
+<input type="text" placeholder="Reason For Visit">
+
+<br><br>
+
+<textarea placeholder="Message"></textarea>
+
+<button class="submit-btn">
+Request Appointment
+</button>
+
+</form>
+
+</div>
+
+<div class="info-card">
+
+<h3>Contact Information</h3>
+
+<div class="info-item">
+<strong>Phone</strong><br>
+(631) 555-0248
+</div>
+
+<div class="info-item">
+<strong>Email</strong><br>
+info@summitptperformance.com
+</div>
+
+<div class="info-item">
+<strong>Fax</strong><br>
+(631) 555-0260
+</div>
+
+<div class="hours">
+<h3>Office Hours</h3>
+
+<p>Monday - Friday: 7:00 AM - 7:00 PM</p>
+<p>Saturday: 8:00 AM - 1:00 PM</p>
+<p>Sunday: Closed</p>
+</div>
+
+</div>
+
+</div>
+
+</div>
+</section>
+
+<section class="locations">
+
+<div class="container">
+
+<div class="section-title">
+<span>Our Clinics</span>
+<h2>Visit One Of Our Locations</h2>
+</div>
+
+<div class="location-grid">
+
+<div class="location-card">
+<h3>Huntington Location</h3>
+
+<p>214 Harborview Road</p>
+<p>Huntington, NY 11743</p>
+
+<div class="location-buttons">
+<a href="#" class="btn btn-primary">Call Location</a>
+<a href="#" class="btn btn-outline">Get Directions</a>
+</div>
+</div>
+
+<div class="location-card">
+<h3>Smithtown Location</h3>
+
+<p>88 Maple Crossing</p>
+<p>Smithtown, NY 11787</p>
+
+<div class="location-buttons">
+<a href="#" class="btn btn-primary">Call Location</a>
+<a href="#" class="btn btn-outline">Get Directions</a>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="notice">
+
+<div class="container">
+
+<div class="notice-box">
+<h3>Medical Emergency Notice</h3>
+<p>
+This website is not monitored for medical emergencies.
+If you are experiencing a medical emergency,
+call 911 or seek immediate medical attention.
+</p>
+</div>
+
+</div>
+
+</section>
+
+<section class="map-section">
+
+<div class="container">
+
+<div class="section-title">
+<span>Map</span>
+<h2>Find Us</h2>
+</div>
+
+<div class="map-placeholder">
+Interactive Google Maps integration would be embedded here.
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="container">
+
+<div class="section-title">
+<span>Ways To Reach Us</span>
+<h2>Contact Methods</h2>
+</div>
+
+<div class="methods-grid">
+
+<div class="method-card">
+<div class="method-icon">📞</div>
+<h3>Call Us</h3>
+<p>Speak directly with our team.</p>
+</div>
+
+<div class="method-card">
+<div class="method-icon">📧</div>
+<h3>Email Us</h3>
+<p>Send questions anytime.</p>
+</div>
+
+<div class="method-card">
+<div class="method-icon">📍</div>
+<h3>Visit A Location</h3>
+<p>Two convenient Long Island offices.</p>
+</div>
+
+<div class="method-card">
+<div class="method-icon">📝</div>
+<h3>Request Appointment</h3>
+<p>Submit a request online.</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="cta">
+
+<div class="container">
+
+<h2>Ready To Get Started?</h2>
+
+<p>
+Schedule your first appointment and take the next step toward moving better.
+</p>
+
+<a href="#" class="cta-btn">
+Request Appointment
+</a>
+
+</div>
+
+</section>
+
+<footer>
+
+<div class="container">
+
+<div class="footer-grid">
+
+<div>
+<h4>Summit Physical Therapy & Performance</h4>
+<p>Personalized physical therapy and sports rehabilitation across Long Island.</p>
+</div>
+
+<div>
+<h4>Quick Links</h4>
+<a href="about.html">About</a>
+<a href="services.html">Services</a>
+<a href="contact.html">Contact</a>
+</div>
+
+<div>
+<h4>Locations</h4>
+<a href="locations.html">Huntington</a>
+<a href="locations.html">Smithtown</a>
+</div>
+
+<div>
+<h4>Contact</h4>
+<p>(631) 555-0248</p>
+<p>info@summitptperformance.com</p>
+</div>
+
+</div>
+
+<div class="disclaimer">
+© 2026 Summit Physical Therapy & Performance. All rights reserved.
+</div>
+
+</div>
+
+</footer>
+
+</body>
+</html>
