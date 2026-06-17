@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Summit Physical Therapy & Performance | Long Island Physical Therapy</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      color: #102033;
+      background: #f7fbff;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .top-bar {
+      background: #0b2d4d;
+      color: white;
+      padding: 10px 5%;
+      font-size: 0.9rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .top-bar span {
+      color: #b9ecff;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid #ddebf5;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 5%;
+    }
+
+    .logo {
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: #0b2d4d;
+      line-height: 1.1;
+    }
+
+    .logo span {
+      color: #159bd3;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: #41556b;
+    }
+
+    .nav-links a:hover {
+      color: #159bd3;
+    }
+
+    .nav-cta {
+      background: #159bd3;
+      color: white !important;
+      padding: 11px 18px;
+      border-radius: 999px;
+    }
+
+    .mobile-toggle {
+      display: none;
+      font-size: 1.7rem;
+      cursor: pointer;
+      color: #0b2d4d;
+    }
+
+    .hero {
+      min-height: 88vh;
+      display: grid;
+      align-items: center;
+      background:
+        linear-gradient(90deg, rgba(8,45,77,0.94), rgba(8,45,77,0.66)),
+        url("https://images.unsplash.com/photo-1571019613914-85f342c6a11e?auto=format&fit=crop&w=1800&q=80") center/cover no-repeat;
+      color: white;
+      padding: 95px 0;
+    }
+
+    .hero-content {
+      max-width: 780px;
+    }
+
+    .eyebrow {
+      color: #7ddcff;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 900;
+      font-size: 0.85rem;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 7vw, 5.8rem);
+      line-height: 1;
+      margin-bottom: 24px;
+      letter-spacing: -2px;
+    }
+
+    .hero p {
+      font-size: 1.18rem;
+      max-width: 680px;
+      color: #e6f6ff;
+      margin-bottom: 34px;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 15px 24px;
+      border-radius: 999px;
+      font-weight: 900;
+      transition: 0.3s ease;
+    }
+
+    .btn-primary {
+      background: #159bd3;
+      color: white;
+      box-shadow: 0 14px 35px rgba(21,155,211,0.3);
+    }
+
+    .btn-primary:hover {
+      background: #0c78a8;
+      transform: translateY(-3px);
+    }
+
+    .btn-light {
+      background: white;
+      color: #0b2d4d;
+    }
+
+    .btn-light:hover {
+      transform: translateY(-3px);
+      background: #eaf7fc;
+    }
+
+    section {
+      padding: 90px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      max-width: 820px;
+      margin: 0 auto 55px;
+    }
+
+    .section-title span {
+      color: #159bd3;
+      text-transform: uppercase;
+      font-weight: 900;
+      letter-spacing: 2px;
+      font-size: 0.85rem;
+    }
+
+    .section-title h2 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      color: #0b2d4d;
+      margin-top: 12px;
+      line-height: 1.1;
+    }
+
+    .section-title p {
+      color: #5e7388;
+      margin-top: 15px;
+      font-size: 1.05rem;
+    }
+
+    .trust-wrap {
+      margin-top: -45px;
+      position: relative;
+      z-index: 5;
+    }
+
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .trust-card {
+      background: white;
+      padding: 26px;
+      border-radius: 20px;
+      box-shadow: 0 18px 45px rgba(16,32,51,0.12);
+      border: 1px solid #e1edf5;
+      text-align: center;
+    }
+
+    .trust-card h3 {
+      color: #0b2d4d;
+      margin-bottom: 8px;
+      font-size: 1.05rem;
+    }
+
+    .trust-card p {
+      color: #60758b;
+      font-size: 0.92rem;
+    }
+
+    .intro {
+      background: #ffffff;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 55px;
+      align-items: center;
+    }
+
+    .split img {
+      border-radius: 28px;
+      box-shadow: 0 22px 60px rgba(16,32,51,0.14);
+      height: 520px;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .split h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: #0b2d4d;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .split p {
+      color: #60758b;
+      margin-bottom: 18px;
+    }
+
+    .checklist {
+      list-style: none;
+      margin-top: 20px;
+    }
+
+    .checklist li {
+      margin-bottom: 12px;
+      color: #243b53;
+      font-weight: 700;
+    }
+
+    .checklist li::before {
+      content: "✓";
+      color: #159bd3;
+      margin-right: 10px;
+      font-weight: 900;
+    }
+
+    .services {
+      background: #eef7fc;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .service-card,
+    .condition-card,
+    .team-card,
+    .testimonial-card {
+      background: white;
+      padding: 30px;
+      border-radius: 24px;
+      border: 1px solid #dceaf3;
+      box-shadow: 0 16px 40px rgba(16,32,51,0.08);
+      transition: 0.3s ease;
+    }
+
+    .service-card:hover,
+    .condition-card:hover,
+    .team-card:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 22px 55px rgba(16,32,51,0.13);
+    }
+
+    .icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: #e5f7ff;
+      color: #159bd3;
+      font-size: 1.7rem;
+      margin-bottom: 18px;
+    }
+
+    .service-card h3,
+    .condition-card h3 {
+      color: #0b2d4d;
+      margin-bottom: 10px;
+      font-size: 1.25rem;
+    }
+
+    .service-card p,
+    .condition-card p,
+    .team-card p,
+    .testimonial-card p {
+      color: #60758b;
+    }
+
+    .conditions {
+      background: white;
+    }
+
+    .condition-card {
+      padding: 26px;
+    }
+
+    .why {
+      background:
+        linear-gradient(135deg, rgba(11,45,77,0.96), rgba(10,89,124,0.9)),
+        url("https://images.unsplash.com/photo-1559757175-0eb30cd8c063?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
+      color: white;
+    }
+
+    .why .section-title h2,
+    .why .section-title p {
+      color: white;
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .why-card {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.16);
+      padding: 28px;
+      border-radius: 22px;
+      backdrop-filter: blur(10px);
+    }
+
+    .why-card h3 {
+      margin-bottom: 10px;
+    }
+
+    .why-card p {
+      color: #d7ecf8;
+    }
+
+    .team {
+      background: #eef7fc;
+    }
+
+    .team-card img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      border-radius: 18px;
+      margin-bottom: 20px;
+    }
+
+    .team-card h3 {
+      color: #0b2d4d;
+      margin-bottom: 4px;
+    }
+
+    .team-card strong {
+      color: #159bd3;
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .testimonials {
+      background: white;
+    }
+
+    .testimonial-card {
+      position: relative;
+    }
+
+    .quote-mark {
+      font-size: 3rem;
+      color: #159bd3;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .testimonial-card strong {
+      color: #0b2d4d;
+      display: block;
+      margin-top: 18px;
+    }
+
+    .insurance-preview {
+      background: #eef7fc;
+    }
+
+    .insurance-box {
+      background: white;
+      border-radius: 30px;
+      padding: 50px;
+      border: 1px solid #dceaf3;
+      box-shadow: 0 20px 50px rgba(16,32,51,0.1);
+      text-align: center;
+    }
+
+    .insurance-logos {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+      margin: 30px 0;
+    }
+
+    .insurance-logo {
+      background: #f7fbff;
+      border: 1px solid #dceaf3;
+      border-radius: 14px;
+      padding: 18px;
+      font-weight: 900;
+      color: #0b2d4d;
+    }
+
+    .cta {
+      background: linear-gradient(135deg, #159bd3, #0b2d4d);
+      color: white;
+      text-align: center;
+    }
+
+    .cta h2 {
+      font-size: clamp(2rem, 5vw, 3.3rem);
+      margin-bottom: 16px;
+    }
+
+    .cta p {
+      color: #d7ecf8;
+      max-width: 720px;
+      margin: 0 auto 30px;
+      font-size: 1.08rem;
+    }
+
+    footer {
+      background: #071f36;
+      color: #c5d8e8;
+      padding: 60px 0 30px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 35px;
+      margin-bottom: 35px;
+    }
+
+    footer h3,
+    footer h4 {
+      color: white;
+      margin-bottom: 16px;
+    }
+
+    footer a {
+      display: block;
+      color: #c5d8e8;
+      margin-bottom: 9px;
+      font-size: 0.95rem;
+    }
+
+    footer a:hover {
+      color: #7ddcff;
+    }
+
+    .disclaimer {
+      border-top: 1px solid rgba(255,255,255,0.12);
+      padding-top: 22px;
+      font-size: 0.85rem;
+      color: #9fb4c5;
+    }
+
+    @media (max-width: 950px) {
+      .mobile-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        width: 100%;
+        background: white;
+        padding: 20px 5%;
+        flex-direction: column;
+        align-items: flex-start;
+        border-bottom: 1px solid #dceaf3;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .trust-grid,
+      .card-grid,
+      .why-grid,
+      .split,
+      .footer-grid,
+      .insurance-logos {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .split img {
+        height: 360px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="top-bar">
+    <div><span>Call:</span> (631) 555-0248</div>
+    <div><span>Locations:</span> Huntington & Smithtown, NY</div>
+    <div><span>Email:</span> info@summitptperformance.com</div>
+  </div>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="logo">Summit <span>PT & Performance</span></a>
+
+      <div class="mobile-toggle" onclick="toggleMenu()">☰</div>
+
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="conditions.html">Conditions</a>
+        <a href="sports-rehab.html">Sports Rehab</a>
+        <a href="patient-info.html">Patient Info</a>
+        <a href="insurance.html">Insurance</a>
+        <a href="locations.html">Locations</a>
+        <a href="blog.html">Blog</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html" class="nav-cta">Request Appointment</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container hero-content">
+      <div class="eyebrow">Long Island Physical Therapy & Sports Rehabilitation</div>
+      <h1>Helping Long Island Move Better, Recover Faster, and Perform Stronger</h1>
+      <p>Personalized physical therapy and sports rehabilitation for active adults, athletes, post-surgical patients, and anyone looking to move with confidence.</p>
+
+      <div class="btn-group">
+        <a href="contact.html" class="btn btn-primary">Request an Appointment</a>
+        <a href="services.html" class="btn btn-light">View Services</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="container trust-wrap">
+    <div class="trust-grid">
+      <div class="trust-card">
+        <h3>Licensed Physical Therapists</h3>
+        <p>Care provided by experienced licensed clinicians.</p>
+      </div>
+      <div class="trust-card">
+        <h3>Personalized Plans</h3>
+        <p>Programs built around your goals and movement needs.</p>
+      </div>
+      <div class="trust-card">
+        <h3>Sports Rehab Specialists</h3>
+        <p>Focused support for athletes and active adults.</p>
+      </div>
+      <div class="trust-card">
+        <h3>Insurance Accepted</h3>
+        <p>Our team helps with benefit verification.</p>
+      </div>
+    </div>
+  </div>
+
+  <section class="intro">
+    <div class="container split">
+      <div>
+        <img src="https://images.unsplash.com/photo-1581093458791-9d15482442f6?auto=format&fit=crop&w=1200&q=80" alt="Physical therapy clinic treatment space">
+      </div>
+
+      <div>
+        <div class="eyebrow">About Summit</div>
+        <h2>One-on-one care designed around how you move, live, and perform.</h2>
+        <p>Summit Physical Therapy & Performance is a locally owned Long Island clinic focused on personalized care, movement restoration, and long-term progress.</p>
+        <p>Our team works with patients recovering from injuries, surgery, mobility limitations, balance concerns, and performance setbacks. Every plan is designed around the individual, not a generic template.</p>
+
+        <ul class="checklist">
+          <li>Personalized treatment plans</li>
+          <li>Orthopedic and sports rehabilitation</li>
+          <li>Convenient Huntington and Smithtown locations</li>
+          <li>Supportive care from first visit to discharge</li>
+        </ul>
+
+        <br>
+        <a href="about.html" class="btn btn-primary">Learn More About Us</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="services">
+    <div class="container">
+      <div class="section-title">
+        <span>Featured Services</span>
+        <h2>Comprehensive physical therapy and performance care</h2>
+        <p>Explore our most requested services for recovery, performance, mobility, and long-term function.</p>
+      </div>
+
+      <div class="card-grid">
+        <div class="service-card">
+          <div class="icon">🏃</div>
+          <h3>Physical Therapy</h3>
+          <p>General orthopedic rehab focused on movement, strength, mobility, and function.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="icon">🏀</div>
+          <h3>Sports Rehabilitation</h3>
+          <p>Athlete-focused rehab designed to support safe and confident return to activity.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="icon">🦵</div>
+          <h3>Post-Surgical Rehab</h3>
+          <p>Structured support after orthopedic procedures based on patient goals and provider guidance.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="icon">🙌</div>
+          <h3>Manual Therapy</h3>
+          <p>Hands-on techniques used when appropriate to support mobility and comfort.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="icon">⚖️</div>
+          <h3>Balance & Fall Prevention</h3>
+          <p>Programs designed for confidence, stability, and safer movement.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="icon">💪</div>
+          <h3>Strength & Conditioning</h3>
+          <p>Performance-focused training for active adults, athletes, and long-term wellness.</p>
+        </div>
+      </div>
+
+      <br><br>
+      <div style="text-align:center;">
+        <a href="services.html" class="btn btn-primary">View All Services</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="conditions">
+    <div class="container">
+      <div class="section-title">
+        <span>Conditions Treated</span>
+        <h2>Support for common injuries and movement concerns</h2>
+        <p>Our team helps patients address a wide range of orthopedic, sports, and mobility-related concerns.</p>
+      </div>
+
+      <div class="card-grid">
+        <div class="condition-card">
+          <h3>Back Pain</h3>
+          <p>General movement-based support for patients experiencing back discomfort or limitations.</p>
+        </div>
+
+        <div class="condition-card">
+          <h3>Neck Pain</h3>
+          <p>Care focused on mobility, posture, strength, and function.</p>
+        </div>
+
+        <div class="condition-card">
+          <h3>Shoulder Injuries</h3>
+          <p>Support for patients looking to improve shoulder mobility and strength.</p>
+        </div>
+
+        <div class="condition-card">
+          <h3>Knee Pain</h3>
+          <p>Rehab for patients experiencing difficulty with walking, stairs, sports, or daily activity.</p>
+        </div>
+
+        <div class="condition-card">
+          <h3>Hip Pain</h3>
+          <p>Movement and strengthening programs tailored to patient goals.</p>
+        </div>
+
+        <div class="condition-card">
+          <h3>Sports Injuries</h3>
+          <p>Programs for athletes and active adults looking to return to training and competition.</p>
+        </div>
+      </div>
+
+      <br><br>
+      <div style="text-align:center;">
+        <a href="conditions.html" class="btn btn-primary">View Conditions Treated</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="why">
+    <div class="container">
+      <div class="section-title">
+        <span>Why Choose Summit</span>
+        <h2>Care designed to help you move forward</h2>
+        <p>Our approach combines individualized care, education, movement assessment, and goal-based progress.</p>
+      </div>
+
+      <div class="why-grid">
+        <div class="why-card">
+          <h3>One-on-One Care</h3>
+          <p>Patients receive focused attention and a plan built around their specific goals.</p>
+        </div>
+
+        <div class="why-card">
+          <h3>Evidence-Informed Approach</h3>
+          <p>Our clinicians use modern rehab principles and patient education to guide care.</p>
+        </div>
+
+        <div class="why-card">
+          <h3>Performance-Focused Rehab</h3>
+          <p>We help patients build strength, mobility, confidence, and long-term movement quality.</p>
+        </div>
+
+        <div class="why-card">
+          <h3>Friendly Clinic Environment</h3>
+          <p>A welcoming space designed to make patients feel supported from the first visit.</p>
+        </div>
+
+        <div class="why-card">
+          <h3>Convenient Locations</h3>
+          <p>Visit us in Huntington or Smithtown with flexible scheduling options.</p>
+        </div>
+
+        <div class="why-card">
+          <h3>Long-Term Results</h3>
+          <p>We focus on helping patients understand their movement and maintain progress.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="team">
+    <div class="container">
+      <div class="section-title">
+        <span>Meet The Team</span>
+        <h2>Experienced clinicians focused on your goals</h2>
+        <p>Our physical therapists bring experience in orthopedic rehab, sports injuries, post-surgical care, and movement performance.</p>
+      </div>
+
+      <div class="card-grid">
+        <div class="team-card">
+          <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=900&q=80" alt="Physical therapist headshot">
+          <h3>Dr. Michael Russo, PT, DPT</h3>
+          <strong>Founder & Physical Therapist</strong>
+          <p>Specializes in orthopedic rehabilitation and sports injuries with 12+ years of experience.</p>
+        </div>
+
+        <div class="team-card">
+          <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=900&q=80" alt="Physical therapist headshot">
+          <h3>Dr. Sarah Bennett, PT, DPT</h3>
+          <strong>Co-Founder & Physical Therapist</strong>
+          <p>Focuses on post-surgical rehabilitation, movement restoration, and patient education.</p>
+        </div>
+
+        <div class="team-card">
+          <img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=900&q=80" alt="Physical therapist headshot">
+          <h3>Dr. Kevin Martinez, PT, DPT</h3>
+          <strong>Sports Rehabilitation Specialist</strong>
+          <p>Works with athletes and active adults on strength, mobility, and return-to-sport programming.</p>
+        </div>
+      </div>
+
+      <br><br>
+      <div style="text-align:center;">
+        <a href="about.html" class="btn btn-primary">Meet The Full Team</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonials">
+    <div class="container">
+      <div class="section-title">
+        <span>Patient Stories</span>
+        <h2>Trusted by patients across Long Island</h2>
+        <p>Fictional testimonials created for this portfolio concept.</p>
+      </div>
+
+      <div class="card-grid">
+        <div class="testimonial-card">
+          <div class="quote-mark">“</div>
+          <p>The team helped me feel confident moving again after my knee surgery. The care felt personal every step of the way.</p>
+          <strong>Melissa R., Huntington</strong>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="quote-mark">“</div>
+          <p>Summit gave me a clear plan and helped me work toward getting back to running safely and gradually.</p>
+          <strong>James T., Smithtown</strong>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="quote-mark">“</div>
+          <p>The clinic is clean, professional, and welcoming. I always felt listened to and supported.</p>
+          <strong>Lauren M., Commack</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="insurance-preview">
+    <div class="container">
+      <div class="insurance-box">
+        <div class="section-title" style="margin-bottom: 25px;">
+          <span>Insurance & Billing</span>
+          <h2>We help make the process easier</h2>
+          <p>Summit works with many major insurance providers and can help verify benefits before your first visit.</p>
+        </div>
+
+        <div class="insurance-logos">
+          <div class="insurance-logo">Aetna</div>
+          <div class="insurance-logo">Cigna</div>
+          <div class="insurance-logo">UHC</div>
+          <div class="insurance-logo">BCBS</div>
+          <div class="insurance-logo">Medicare</div>
+        </div>
+
+        <a href="insurance.html" class="btn btn-primary">Insurance Information</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="container">
+      <h2>Ready to take the first step toward moving better?</h2>
+      <p>Request an appointment with Summit Physical Therapy & Performance and learn how our team can help you work toward your goals.</p>
+      <div class="btn-group" style="justify-content:center;">
+        <a href="contact.html" class="btn btn-light">Request an Appointment</a>
+        <a href="tel:6315550248" class="btn btn-primary">Call Now</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <h3>Summit Physical Therapy & Performance</h3>
+        <p>Personalized physical therapy and sports rehabilitation for Long Island patients.</p>
+        <br>
+        <p><strong>Phone:</strong> (631) 555-0248</p>
+        <p><strong>Email:</strong> info@summitptperformance.com</p>
+      </div>
+
+      <div>
+        <h4>Quick Links</h4>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="conditions.html">Conditions</a>
+        <a href="sports-rehab.html">Sports Rehab</a>
+        <a href="contact.html">Contact</a>
+      </div>
+
+      <div>
+        <h4>Services</h4>
+        <a href="services.html">Physical Therapy</a>
+        <a href="services.html">Sports Rehab</a>
+        <a href="services.html">Post-Surgical Rehab</a>
+        <a href="services.html">Balance Training</a>
+      </div>
+
+      <div>
+        <h4>Locations</h4>
+        <a href="locations.html">Huntington</a>
+        <a href="locations.html">Smithtown</a>
+        <a href="patient-info.html">Patient Info</a>
+        <a href="insurance.html">Insurance</a>
+      </div>
+    </div>
+
+    <div class="container disclaimer">
+      Website content is for general informational purposes only and is not medical advice. Please consult a licensed healthcare professional for diagnosis and treatment recommendations.
+      <br><br>
+      © 2026 Summit Physical Therapy & Performance. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("navLinks").classList.toggle("active");
+    }
+  </script>
+
+</body>
+</html>
