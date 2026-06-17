@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAQ | Summit Physical Therapy & Performance</title>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: Arial, sans-serif; color:#102033; background:#f7fbff; line-height:1.6; overflow-x:hidden; }
+    a { text-decoration:none; color:inherit; }
+    .container { width:90%; max-width:1200px; margin:auto; }
+    section { padding:90px 0; }
+
+    .top-bar { background:#0b2d4d; color:white; padding:10px 5%; font-size:.9rem; display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap; }
+    .top-bar span { color:#b9ecff; }
+
+    nav { position:sticky; top:0; z-index:1000; background:rgba(255,255,255,.96); backdrop-filter:blur(14px); border-bottom:1px solid #ddebf5; }
+    .nav-inner { display:flex; align-items:center; justify-content:space-between; padding:18px 5%; }
+    .logo { font-size:1.35rem; font-weight:900; color:#0b2d4d; line-height:1.1; }
+    .logo span { color:#159bd3; }
+    .nav-links { display:flex; align-items:center; gap:20px; font-weight:700; font-size:.92rem; color:#41556b; }
+    .nav-links a:hover { color:#159bd3; }
+    .nav-cta { background:#159bd3; color:white!important; padding:11px 18px; border-radius:999px; }
+    .mobile-toggle { display:none; font-size:1.7rem; cursor:pointer; color:#0b2d4d; }
+
+    .hero {
+      min-height:65vh;
+      display:grid;
+      align-items:center;
+      background:linear-gradient(90deg,rgba(8,45,77,.94),rgba(8,45,77,.62)),
+      url("https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1800&q=80") center/cover no-repeat;
+      color:white;
+      padding:95px 0;
+    }
+
+    .hero-content { max-width:790px; }
+    .eyebrow { color:#7ddcff; text-transform:uppercase; letter-spacing:2px; font-weight:900; font-size:.85rem; margin-bottom:16px; }
+    .hero h1 { font-size:clamp(3rem,7vw,5.2rem); line-height:1; margin-bottom:24px; letter-spacing:-2px; }
+    .hero p { font-size:1.18rem; max-width:700px; color:#e6f6ff; margin-bottom:34px; }
+
+    .btn-group { display:flex; gap:14px; flex-wrap:wrap; }
+    .btn { display:inline-block; padding:15px 24px; border-radius:999px; font-weight:900; transition:.3s ease; }
+    .btn-primary { background:#159bd3; color:white; box-shadow:0 14px 35px rgba(21,155,211,.3); }
+    .btn-primary:hover { background:#0c78a8; transform:translateY(-3px); }
+    .btn-light { background:white; color:#0b2d4d; }
+    .btn-light:hover { transform:translateY(-3px); background:#eaf7fc; }
+
+    .section-title { text-align:center; max-width:850px; margin:0 auto 55px; }
+    .section-title span { color:#159bd3; text-transform:uppercase; font-weight:900; letter-spacing:2px; font-size:.85rem; }
+    .section-title h2 { font-size:clamp(2rem,5vw,3.2rem); color:#0b2d4d; margin-top:12px; line-height:1.1; }
+    .section-title p { color:#5e7388; margin-top:15px; font-size:1.05rem; }
+
+    .faq-section:nth-child(even) { background:#eef7fc; }
+    .faq-section:nth-child(odd) { background:white; }
+
+    .faq-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+
+    .faq-item {
+      background:white;
+      border:1px solid #dceaf3;
+      border-radius:22px;
+      padding:26px;
+      box-shadow:0 14px 35px rgba(16,32,51,.07);
+    }
+
+    .faq-section:nth-child(odd) .faq-item { background:#f7fbff; }
+
+    .faq-item h3 {
+      color:#0b2d4d;
+      font-size:1.15rem;
+      margin-bottom:10px;
+    }
+
+    .faq-item p {
+      color:#60758b;
+    }
+
+    .notice {
+      background:white;
+    }
+
+    .notice-box {
+      background:#eef7fc;
+      border:1px solid #cce7f5;
+      border-left:6px solid #159bd3;
+      border-radius:20px;
+      padding:28px;
+      color:#40566d;
+      max-width:950px;
+      margin:auto;
+    }
+
+    .notice-box strong {
+      color:#0b2d4d;
+      display:block;
+      margin-bottom:8px;
+      font-size:1.15rem;
+    }
+
+    .cta { background:linear-gradient(135deg,#159bd3,#0b2d4d); color:white; text-align:center; }
+    .cta h2 { font-size:clamp(2rem,5vw,3.3rem); margin-bottom:16px; }
+    .cta p { color:#d7ecf8; max-width:720px; margin:0 auto 30px; font-size:1.08rem; }
+
+    footer { background:#071f36; color:#c5d8e8; padding:60px 0 30px; }
+    .footer-grid { display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr; gap:35px; margin-bottom:35px; }
+    footer h3, footer h4 { color:white; margin-bottom:16px; }
+    footer a { display:block; color:#c5d8e8; margin-bottom:9px; font-size:.95rem; }
+    footer a:hover { color:#7ddcff; }
+    .disclaimer { border-top:1px solid rgba(255,255,255,.12); padding-top:22px; font-size:.85rem; color:#9fb4c5; }
+
+    @media(max-width:950px) {
+      .mobile-toggle { display:block; }
+      .nav-links { display:none; position:absolute; top:72px; left:0; width:100%; background:white; padding:20px 5%; flex-direction:column; align-items:flex-start; border-bottom:1px solid #dceaf3; }
+      .nav-links.active { display:flex; }
+      .faq-grid, .footer-grid { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="top-bar">
+    <div><span>Call:</span> (631) 555-0248</div>
+    <div><span>Locations:</span> Huntington & Smithtown, NY</div>
+    <div><span>Email:</span> info@summitptperformance.com</div>
+  </div>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="logo">Summit <span>PT & Performance</span></a>
+      <div class="mobile-toggle" onclick="toggleMenu()">☰</div>
+
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="conditions.html">Conditions</a>
+        <a href="sports-rehab.html">Sports Rehab</a>
+        <a href="patient-info.html">Patient Info</a>
+        <a href="insurance.html">Insurance</a>
+        <a href="locations.html">Locations</a>
+        <a href="blog.html">Blog</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html" class="nav-cta">Request Appointment</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container hero-content">
+      <div class="eyebrow">Frequently Asked Questions</div>
+      <h1>Answers Before Your First Visit</h1>
+      <p>Find answers to common questions about physical therapy, appointments, insurance, sports rehabilitation, and new patient visits.</p>
+
+      <div class="btn-group">
+        <a href="contact.html" class="btn btn-primary">Request Appointment</a>
+        <a href="tel:6315550248" class="btn btn-light">Call Now</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="faq-section">
+    <div class="container">
+      <div class="section-title">
+        <span>General Questions</span>
+        <h2>Physical therapy basics</h2>
+      </div>
+
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h3>What is physical therapy?</h3>
+          <p>Physical therapy is a healthcare service focused on movement, function, strength, mobility, education, and helping patients work toward activity-related goals.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Do I need a referral?</h3>
+          <p>Referral requirements depend on your insurance plan and situation. Our office can help you understand what may be needed before your visit.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>How long is an appointment?</h3>
+          <p>Appointment length may vary based on service type and patient needs. Our team can explain scheduling details before your first visit.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>How many visits will I need?</h3>
+          <p>The number of visits depends on your goals, condition, progress, provider guidance, and plan of care. Your therapist will discuss this after an evaluation.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>What should I wear?</h3>
+          <p>Wear comfortable clothing that allows movement and makes it easy to assess the area being treated.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Can I continue exercising during treatment?</h3>
+          <p>This depends on your specific situation. Your therapist can provide general guidance based on your evaluation and goals.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq-section">
+    <div class="container">
+      <div class="section-title">
+        <span>Insurance & Billing</span>
+        <h2>Coverage questions</h2>
+      </div>
+
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h3>Do you accept my insurance?</h3>
+          <p>Summit works with many major insurance providers. Coverage and participation vary by plan, so benefits should be confirmed before your visit.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>What if I am out-of-network?</h3>
+          <p>Some plans include out-of-network benefits. Your insurance provider can confirm eligibility, reimbursement rules, and requirements.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Will I have a copay?</h3>
+          <p>Copays, deductibles, and patient responsibility amounts vary by plan. Our office can help review general information, but coverage is not guaranteed.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Can you verify my benefits?</h3>
+          <p>Our team can help review general benefit information before your first visit. Verification is not a guarantee of payment or coverage.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq-section">
+    <div class="container">
+      <div class="section-title">
+        <span>Sports Rehabilitation</span>
+        <h2>For athletes and active adults</h2>
+      </div>
+
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h3>When can I return to sports?</h3>
+          <p>Return-to-sport timing depends on the individual, injury, progress, sport demands, and healthcare provider guidance.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Do you work with high school athletes?</h3>
+          <p>Yes. Summit works with high school athletes, college athletes, recreational athletes, runners, lifters, and active adults.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Can physical therapy help prevent injuries?</h3>
+          <p>Physical therapy may support injury prevention through movement assessment, strengthening, mobility work, education, and training guidance.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Do you create return-to-play plans?</h3>
+          <p>Our sports rehab programs can include progressive return-to-sport plans based on strength, mobility, confidence, sport demands, and provider guidance.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq-section">
+    <div class="container">
+      <div class="section-title">
+        <span>New Patients</span>
+        <h2>Before your first appointment</h2>
+      </div>
+
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h3>What should I bring to my first visit?</h3>
+          <p>Please bring a photo ID, insurance card, referral if required, comfortable clothing, and any relevant provider information.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>How early should I arrive?</h3>
+          <p>Plan to arrive a few minutes early so the front desk can complete check-in and answer any questions.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Can I complete paperwork ahead of time?</h3>
+          <p>Yes. A real clinic could provide downloadable or online forms through the patient resources section.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Do you offer self-pay options?</h3>
+          <p>Patients may contact the office to ask about direct payment options and availability.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="notice">
+    <div class="container">
+      <div class="notice-box">
+        <strong>Medical Disclaimer</strong>
+        These FAQs are for general informational purposes only and are not medical advice. Please consult a licensed healthcare professional for diagnosis, treatment recommendations, and condition-specific guidance.
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="container">
+      <h2>Still have questions?</h2>
+      <p>Our team is happy to help answer questions about appointments, insurance, locations, and services.</p>
+
+      <div class="btn-group" style="justify-content:center;">
+        <a href="contact.html" class="btn btn-light">Contact Us</a>
+        <a href="contact.html" class="btn btn-primary">Request Appointment</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <h3>Summit Physical Therapy & Performance</h3>
+        <p>Personalized physical therapy and sports rehabilitation for Long Island patients.</p>
+        <br>
+        <p><strong>Phone:</strong> (631) 555-0248</p>
+        <p><strong>Email:</strong> info@summitptperformance.com</p>
+      </div>
+
+      <div>
+        <h4>Quick Links</h4>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="conditions.html">Conditions</a>
+        <a href="sports-rehab.html">Sports Rehab</a>
+        <a href="contact.html">Contact</a>
+      </div>
+
+      <div>
+        <h4>Services</h4>
+        <a href="services.html">Physical Therapy</a>
+        <a href="services.html">Sports Rehab</a>
+        <a href="services.html">Post-Surgical Rehab</a>
+        <a href="services.html">Balance Training</a>
+      </div>
+
+      <div>
+        <h4>Locations</h4>
+        <a href="locations.html">Huntington</a>
+        <a href="locations.html">Smithtown</a>
+        <a href="patient-info.html">Patient Info</a>
+        <a href="insurance.html">Insurance</a>
+      </div>
+    </div>
+
+    <div class="container disclaimer">
+      Website content is for general informational purposes only and is not medical advice. Please consult a licensed healthcare professional for diagnosis and treatment recommendations.
+      <br><br>
+      © 2026 Summit Physical Therapy & Performance. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("navLinks").classList.toggle("active");
+    }
+  </script>
+
+</body>
+</html>
