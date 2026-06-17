@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Patient Information | Summit Physical Therapy & Performance</title>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: Arial, sans-serif; color: #102033; background: #f7fbff; line-height: 1.6; overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; }
+    .container { width: 90%; max-width: 1200px; margin: auto; }
+    section { padding: 90px 0; }
+
+    .top-bar {
+      background: #0b2d4d;
+      color: white;
+      padding: 10px 5%;
+      font-size: 0.9rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .top-bar span { color: #b9ecff; }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid #ddebf5;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 5%;
+    }
+
+    .logo {
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: #0b2d4d;
+      line-height: 1.1;
+    }
+
+    .logo span { color: #159bd3; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: #41556b;
+    }
+
+    .nav-links a:hover { color: #159bd3; }
+
+    .nav-cta {
+      background: #159bd3;
+      color: white !important;
+      padding: 11px 18px;
+      border-radius: 999px;
+    }
+
+    .mobile-toggle {
+      display: none;
+      font-size: 1.7rem;
+      cursor: pointer;
+      color: #0b2d4d;
+    }
+
+    .hero {
+      min-height: 70vh;
+      display: grid;
+      align-items: center;
+      background:
+        linear-gradient(90deg, rgba(8,45,77,0.94), rgba(8,45,77,0.62)),
+        url("https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1800&q=80") center/cover no-repeat;
+      color: white;
+      padding: 95px 0;
+    }
+
+    .hero-content { max-width: 790px; }
+
+    .eyebrow {
+      color: #7ddcff;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 900;
+      font-size: 0.85rem;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 7vw, 5.4rem);
+      line-height: 1;
+      margin-bottom: 24px;
+      letter-spacing: -2px;
+    }
+
+    .hero p {
+      font-size: 1.18rem;
+      max-width: 700px;
+      color: #e6f6ff;
+      margin-bottom: 34px;
+    }
+
+    .btn-group { display: flex; gap: 14px; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-block;
+      padding: 15px 24px;
+      border-radius: 999px;
+      font-weight: 900;
+      transition: 0.3s ease;
+    }
+
+    .btn-primary {
+      background: #159bd3;
+      color: white;
+      box-shadow: 0 14px 35px rgba(21,155,211,0.3);
+    }
+
+    .btn-primary:hover {
+      background: #0c78a8;
+      transform: translateY(-3px);
+    }
+
+    .btn-light {
+      background: white;
+      color: #0b2d4d;
+    }
+
+    .btn-light:hover {
+      transform: translateY(-3px);
+      background: #eaf7fc;
+    }
+
+    .section-title {
+      text-align: center;
+      max-width: 850px;
+      margin: 0 auto 55px;
+    }
+
+    .section-title span {
+      color: #159bd3;
+      text-transform: uppercase;
+      font-weight: 900;
+      letter-spacing: 2px;
+      font-size: 0.85rem;
+    }
+
+    .section-title h2 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      color: #0b2d4d;
+      margin-top: 12px;
+      line-height: 1.1;
+    }
+
+    .section-title p {
+      color: #5e7388;
+      margin-top: 15px;
+      font-size: 1.05rem;
+    }
+
+    .overview { background: white; }
+
+    .steps {
+      background: #eef7fc;
+    }
+
+    .step-grid, .card-grid, .forms-grid, .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 24px;
+      border: 1px solid #dceaf3;
+      box-shadow: 0 16px 40px rgba(16,32,51,0.08);
+      transition: 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 22px 55px rgba(16,32,51,0.13);
+    }
+
+    .icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: #e5f7ff;
+      color: #159bd3;
+      font-size: 1.7rem;
+      margin-bottom: 18px;
+    }
+
+    .card h3 {
+      color: #0b2d4d;
+      margin-bottom: 10px;
+      font-size: 1.25rem;
+    }
+
+    .card p, .card li {
+      color: #60758b;
+    }
+
+    .card ul {
+      padding-left: 20px;
+      margin-top: 10px;
+    }
+
+    .first-visit {
+      background: white;
+    }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 18px;
+    }
+
+    .timeline-card {
+      background: #f7fbff;
+      border: 1px solid #dceaf3;
+      border-radius: 24px;
+      padding: 26px;
+      box-shadow: 0 14px 34px rgba(16,32,51,0.06);
+    }
+
+    .timeline-number {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #159bd3;
+      color: white;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      margin-bottom: 16px;
+    }
+
+    .timeline-card h3 {
+      color: #0b2d4d;
+      margin-bottom: 10px;
+    }
+
+    .timeline-card p {
+      color: #60758b;
+      font-size: 0.95rem;
+    }
+
+    .bring {
+      background: #eef7fc;
+    }
+
+    .forms {
+      background: white;
+    }
+
+    .form-card {
+      border-left: 6px solid #159bd3;
+    }
+
+    .form-card .download {
+      display: inline-block;
+      margin-top: 18px;
+      color: #159bd3;
+      font-weight: 900;
+    }
+
+    .before {
+      background:
+        linear-gradient(135deg, rgba(11,45,77,0.96), rgba(10,89,124,0.9)),
+        url("https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
+      color: white;
+    }
+
+    .before .section-title h2,
+    .before .section-title p {
+      color: white;
+    }
+
+    .before .card {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.16);
+      backdrop-filter: blur(10px);
+      box-shadow: none;
+    }
+
+    .before .card h3 {
+      color: white;
+    }
+
+    .before .card p {
+      color: #d7ecf8;
+    }
+
+    .notice {
+      background: white;
+    }
+
+    .notice-box {
+      background: #eef7fc;
+      border: 1px solid #cce7f5;
+      border-left: 6px solid #159bd3;
+      border-radius: 20px;
+      padding: 28px;
+      color: #40566d;
+      max-width: 950px;
+      margin: auto;
+    }
+
+    .notice-box strong {
+      color: #0b2d4d;
+      display: block;
+      margin-bottom: 8px;
+      font-size: 1.15rem;
+    }
+
+    .cta {
+      background: linear-gradient(135deg, #159bd3, #0b2d4d);
+      color: white;
+      text-align: center;
+    }
+
+    .cta h2 {
+      font-size: clamp(2rem, 5vw, 3.3rem);
+      margin-bottom: 16px;
+    }
+
+    .cta p {
+      color: #d7ecf8;
+      max-width: 720px;
+      margin: 0 auto 30px;
+      font-size: 1.08rem;
+    }
+
+    footer {
+      background: #071f36;
+      color: #c5d8e8;
+      padding: 60px 0 30px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 35px;
+      margin-bottom: 35px;
+    }
+
+    footer h3, footer h4 {
+      color: white;
+      margin-bottom: 16px;
+    }
+
+    footer a {
+      display: block;
+      color: #c5d8e8;
+      margin-bottom: 9px;
+      font-size: 0.95rem;
+    }
+
+    footer a:hover { color: #7ddcff; }
+
+    .disclaimer {
+      border-top: 1px solid rgba(255,255,255,0.12);
+      padding-top: 22px;
+      font-size: 0.85rem;
+      color: #9fb4c5;
+    }
+
+    @media (max-width: 950px) {
+      .mobile-toggle { display: block; }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        width: 100%;
+        background: white;
+        padding: 20px 5%;
+        flex-direction: column;
+        align-items: flex-start;
+        border-bottom: 1px solid #dceaf3;
+      }
+
+      .nav-links.active { display: flex; }
+
+      .step-grid, .card-grid, .forms-grid, .tips-grid, .timeline, .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="top-bar">
+    <div><span>Call:</span> (631) 555-0248</div>
+    <div><span>Locations:</span> Huntington & Smithtown, NY</div>
+    <div><span>Email:</span> info@summitptperformance.com</div>
+  </div>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="logo">Summit <span>PT & Performance</span></a>
+
+      <div class="mobile-toggle" onclick="toggleMenu()">☰</div>
+
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="conditions.html">Conditions</a>
+        <a href="sports-rehab.html">Sports Rehab</a>
+        <a href="patient-info.html">Patient Info</a>
+        <a href="insurance.html">Insurance</a>
+        <a href="locations.html">Locations</a>
+        <a href="blog.html">Blog</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html" class="nav-cta">Request Appointment</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container hero-content">
+      <div class="eyebrow">Patient Information</div>
+      <h1>Everything You Need Before Your First Visit</h1>
+      <p>Learn what to expect, what to bring, how appointments work, and how our team helps make your first visit simple and comfortable.</p>
+
+      <div class="btn-group">
+        <a href="contact.html" class="btn btn-primary">Request Appointment</a>
+        <a href="insurance.html" class="btn btn-light">Insurance Info</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="overview">
+    <div class="container">
+      <div class="section-title">
+        <span>New Patients</span>
+        <h2>Designed to make your first visit easy</h2>
+        <p>At Summit Physical Therapy & Performance, our goal is to make the process clear from the first phone call through your first appointment.</p>
+      </div>
+
+      <div class="step-grid">
+        <div class="card">
+          <div class="icon">📞</div>
+          <h3>Schedule Your Visit</h3>
+          <p>Contact our office to request an appointment at our Huntington or Smithtown location.</p>
+        </div>
+
+        <div class="card">
+          <div class="icon">🛡️</div>
+          <h3>Verify Insurance</h3>
+          <p>Our patient care team can help gather your insurance information and explain the verification process.</p>
+        </div>
+
+        <div class="card">
+          <div class="icon">🏃</div>
+          <h3>Start Your Plan</h3>
+          <p>Your first visit includes a discussion of your goals, movement assessment, and general treatment plan.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="first-visit">
+    <div class="container">
+      <div class="section-title">
+        <span>Your First Visit</span>
+        <h2>What to expect at your appointment</h2>
+        <p>Your first appointment helps your therapist understand your history, movement, goals, and the best path forward.</p>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-card">
+          <div class="timeline-number">1</div>
+          <h3>History Review</h3>
+          <p>Talk through your reason for visiting, activity level, symptoms, goals, and relevant background.</p>
+        </div>
+
+        <div class="timeline-card">
+          <div class="timeline-number">2</div>
+          <h3>Movement Assessment</h3>
+          <p>Your therapist may assess mobility, strength, balance, posture, or functional movement.</p>
+        </div>
+
+        <div class="timeline-card">
+          <div class="timeline-number">3</div>
+          <h3>Goal Discussion</h3>
+          <p>Discuss what matters most to you, whether that is daily function, sport, work, or active living.</p>
+        </div>
+
+        <div class="timeline-card">
+          <div class="timeline-number">4</div>
+          <h3>Initial Plan</h3>
+          <p>Your therapist will explain the general plan of care and next steps based on your evaluation.</p>
+        </div>
+
+        <div class="timeline-card">
+          <div class="timeline-number">5</div>
+          <h3>Home Guidance</h3>
+          <p>If appropriate, you may receive general exercises or education to support your progress.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bring">
+    <div class="container">
+      <div class="section-title">
+        <span>What To Bring</span>
+        <h2>Come prepared for a smooth first visit</h2>
+      </div>
+
+      <div class="card-grid">
+        <div class="card"><div class="icon">🪪</div><h3>Photo ID</h3><p>Please bring a valid form of identification for check-in.</p></div>
+        <div class="card"><div class="icon">💳</div><h3>Insurance Card</h3><p>Bring your insurance card so our team can review and verify your plan information.</p></div>
+        <div class="card"><div class="icon">📄</div><h3>Referral If Required</h3><p>Some insurance plans or situations may require a referral. Our office can help clarify this.</p></div>
+        <div class="card"><div class="icon">👟</div><h3>Comfortable Clothing</h3><p>Wear clothing that allows you to move and makes it easier to assess the area being treated.</p></div>
+        <div class="card"><div class="icon">🩺</div><h3>Relevant Medical Info</h3><p>Bring any relevant provider notes, surgical protocols, imaging reports, or instructions if available.</p></div>
+        <div class="card"><div class="icon">❓</div><h3>Your Questions</h3><p>Bring questions about your goals, appointment plan, scheduling, or next steps.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="forms">
+    <div class="container">
+      <div class="section-title">
+        <span>Forms & Documents</span>
+        <h2>New patient forms</h2>
+        <p>These form cards are included as part of this website concept. A real clinic could connect these to downloadable PDFs or an online intake system.</p>
+      </div>
+
+      <div class="forms-grid">
+        <div class="card form-card">
+          <div class="icon">📝</div>
+          <h3>New Patient Intake Form</h3>
+          <p>Basic patient information, contact details, and appointment-related information.</p>
+          <a href="#" class="download">Download Form →</a>
+        </div>
+
+        <div class="card form-card">
+          <div class="icon">📋</div>
+          <h3>Medical History Form</h3>
+          <p>General background information to help your therapist better understand your history.</p>
+          <a href="#" class="download">Download Form →</a>
+        </div>
+
+        <div class="card form-card">
+          <div class="icon">💳</div>
+          <h3>Insurance Information Form</h3>
+          <p>Information used by the office team to help with insurance verification.</p>
+          <a href="#" class="download">Download Form →</a>
+        </div>
+
+        <div class="card form-card">
+          <div class="icon">✅</div>
+          <h3>Consent Form</h3>
+          <p>General consent and clinic policy information for new patients.</p>
+          <a href="#" class="download">Download Form →</a>
+        </div>
+
+        <div class="card form-card">
+          <div class="icon">🔐</div>
+          <h3>Privacy Acknowledgment</h3>
+          <p>General privacy and communication acknowledgment for clinic records.</p>
+          <a href="#" class="download">Download Form →</a>
+        </div>
+
+        <div class="card form-card">
+          <div class="icon">📍</div>
+          <h3>Location Information</h3>
+          <p>Directions, parking details, and office hours for both Long Island locations.</p>
+          <a href="locations.html" class="download">View Locations →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="before">
+    <div class="container">
+      <div class="section-title">
+        <span>Before Your Appointment</span>
+        <h2>A few simple tips before you arrive</h2>
+        <p>Preparing ahead of time can make your first appointment smoother and more productive.</p>
+      </div>
+
+      <div class="tips-grid">
+        <div class="card">
+          <div class="icon">⏰</div>
+          <h3>Arrive Early</h3>
+          <p>Plan to arrive a few minutes early so our team can complete check-in and answer questions.</p>
+        </div>
+
+        <div class="card">
+          <div class="icon">👕</div>
+          <h3>Dress For Movement</h3>
+          <p>Wear comfortable clothing that allows you to move, stretch, walk, or exercise as appropriate.</p>
+        </div>
+
+        <div class="card">
+          <div class="icon">🎯</div>
+          <h3>Know Your Goals</h3>
+          <p>Think about what you want to return to, such as work, exercise, sports, hobbies, or daily activity.</p>
+        </div>
+
+        <div class="card">
+          <div class="icon">💬</div>
+          <h3>Communicate Changes</h3>
+          <p>Tell your therapist about changes in symptoms, medications, surgeries, or provider instructions.</p>
+        </div>
+
+        <div class="card">
+          <div class="icon">📅</div>
+          <h3>Plan Follow-Ups</h3>
+          <p>Your therapist and scheduling team can help coordinate future visits based on your plan.</p>
+        </div>
+
+        <div class="card">
+          <div class="icon">📞</div>
+          <h3>Ask Questions</h3>
+          <p>Our office team can help with scheduling, insurance, location details, and general questions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="notice">
+    <div class="container">
+      <div class="notice-box">
+        <strong>Appointment & Medical Information Notice</strong>
+        This page is for general patient information only. For medical concerns, diagnosis, or condition-specific treatment recommendations, please consult a licensed healthcare professional. Do not submit sensitive medical information through general contact forms.
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="container">
+      <h2>Ready for your first visit?</h2>
+      <p>Request an appointment with Summit Physical Therapy & Performance and our team will help guide you through the next steps.</p>
+
+      <div class="btn-group" style="justify-content:center;">
+        <a href="contact.html" class="btn btn-light">Request Appointment</a>
+        <a href="insurance.html" class="btn btn-primary">Insurance Information</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <h3>Summit Physical Therapy & Performance</h3>
+        <p>Personalized physical therapy and sports rehabilitation for Long Island patients.</p>
+        <br>
+        <p><strong>Phone:</strong> (631) 555-0248</p>
+        <p><strong>Email:</strong> info@summitptperformance.com</p>
+      </div>
+
+      <div>
+        <h4>Quick Links</h4>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="conditions.html">Conditions</a>
+        <a href="sports-rehab.html">Sports Rehab</a>
+        <a href="contact.html">Contact</a>
+      </div>
+
+      <div>
+        <h4>Services</h4>
+        <a href="services.html">Physical Therapy</a>
+        <a href="services.html">Sports Rehab</a>
+        <a href="services.html">Post-Surgical Rehab</a>
+        <a href="services.html">Balance Training</a>
+      </div>
+
+      <div>
+        <h4>Locations</h4>
+        <a href="locations.html">Huntington</a>
+        <a href="locations.html">Smithtown</a>
+        <a href="patient-info.html">Patient Info</a>
+        <a href="insurance.html">Insurance</a>
+      </div>
+    </div>
+
+    <div class="container disclaimer">
+      Website content is for general informational purposes only and is not medical advice. Please consult a licensed healthcare professional for diagnosis and treatment recommendations.
+      <br><br>
+      © 2026 Summit Physical Therapy & Performance. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("navLinks").classList.toggle("active");
+    }
+  </script>
+
+</body>
+</html>
