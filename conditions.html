@@ -1,1 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Conditions Treated | Summit Physical Therapy & Performance</title>
 
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: Arial, sans-serif; color: #102033; background: #f7fbff; line-height: 1.6; overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+    .container { width: 90%; max-width: 1200px; margin: auto; }
+    section { padding: 90px 0; }
+
+    .top-bar {
+      background: #0b2d4d;
+      color: white;
+      padding: 10px 5%;
+      font-size: 0.9rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .top-bar span { color: #b9ecff; }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid #ddebf5;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 5%;
+    }
+
+    .logo {
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: #0b2d4d;
+      line-height: 1.1;
+    }
+
+    .logo span { color: #159bd3; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: #41556b;
+    }
+
+    .nav-links a:hover { color: #159bd3; }
+
+    .nav-cta {
+      background: #159bd3;
+      color: white !important;
+      padding: 11px 18px;
+      border-radius: 999px;
+    }
+
+    .mobile-toggle {
+      display: none;
+      font-size: 1.7rem;
+      cursor: pointer;
+      color: #0b2d4d;
+    }
+
+    .hero {
+      min-height: 70vh;
+      display: grid;
+      align-items: center;
+      background:
+        linear-gradient(90deg, rgba(8,45,77,0.94), rgba(8,45,77,0.62)),
+        url("https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=1800&q=80") center/cover no-repeat;
+      color: white;
+      padding: 95px 0;
+    }
+
+    .hero-content { max-width: 790px; }
+
+    .eyebrow {
+      color: #7ddcff;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 900;
+      font-size: 0.85rem;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 7vw, 5.4rem);
+      line-height: 1;
+      margin-bottom: 24px;
+      letter-spacing: -2px;
+    }
+
+    .hero p {
+      font-size: 1.18rem;
+      max-width: 700px;
+      color: #e6f6ff;
+      margin-bottom: 34px;
+    }
+
+    .btn-group { display: flex; gap: 14px; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-block;
+      padding: 15px 24px;
+      border-radius: 999px;
+      font-weight: 900;
+      transition: 0.3s ease;
+    }
+
+    .btn-primary {
+      background: #159bd3;
+      color: white;
+      box-shadow: 0 14px 35px rgba(21,155,211,0.3);
+    }
+
+    .btn-primary:hover {
+      background: #0c78a8;
+      transform: translateY(-3px);
+    }
+
+    .btn-light {
+      background: white;
+      color: #0b2d4d;
+    }
+
+    .btn-light:hover {
+      transform: translateY(-3px);
+      background: #eaf7fc;
+    }
+
+    .section-title {
+      text-align: center;
+      max-width: 850px;
+      margin: 0 auto 55px;
+    }
+
+    .section-title span {
+      color: #159bd3;
+      text-transform: uppercase;
+      font-weight: 900;
+      letter-spacing: 2px;
+      font-size: 0.85rem;
+    }
+
+    .section-title h2 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      color: #0b2d4d;
+      margin-top: 12px;
+      line-height: 1.1;
+    }
+
+    .section-title p {
+      color: #5e7388;
+      margin-top: 15px;
+      font-size: 1.05rem;
+    }
+
+    .intro {
+      background: white;
+    }
+
+    .notice-box {
+      background: #eef7fc;
+      border: 1px solid #cce7f5;
+      border-left: 6px solid #159bd3;
+      border-radius: 20px;
+      padding: 28px;
+      color: #40566d;
+      max-width: 950px;
+      margin: auto;
+    }
+
+    .notice-box strong {
+      color: #0b2d4d;
+      display: block;
+      margin-bottom: 8px;
+      font-size: 1.15rem;
+    }
+
+    .conditions {
+      background: #eef7fc;
+    }
+
+    .condition-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+
+    .condition-card {
+      background: white;
+      border: 1px solid #dceaf3;
+      border-radius: 28px;
+      padding: 38px;
+      box-shadow: 0 16px 40px rgba(16,32,51,0.08);
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 34px;
+      align-items: start;
+    }
+
+    .condition-card:nth-child(even) {
+      grid-template-columns: 1.2fr 0.8fr;
+    }
+
+    .condition-heading {
+      position: sticky;
+      top: 100px;
+    }
+
+    .condition-icon {
+      width: 60px;
+      height: 60px;
+      background: #e5f7ff;
+      color: #159bd3;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      font-size: 1.8rem;
+      margin-bottom: 18px;
+    }
+
+    .condition-heading h3 {
+      color: #0b2d4d;
+      font-size: 1.8rem;
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+
+    .condition-heading p {
+      color: #60758b;
+      margin-bottom: 20px;
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+
+    .detail-card {
+      background: #f7fbff;
+      border: 1px solid #dceaf3;
+      padding: 22px;
+      border-radius: 18px;
+    }
+
+    .detail-card h4 {
+      color: #0b2d4d;
+      margin-bottom: 8px;
+      font-size: 1.05rem;
+    }
+
+    .detail-card p,
+    .detail-card li {
+      color: #60758b;
+    }
+
+    .detail-card ul {
+      padding-left: 20px;
+      margin-top: 8px;
+    }
+
+    .related-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .pill {
+      background: #e5f7ff;
+      color: #0b2d4d;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 800;
+    }
+
+    .cta {
+      background: linear-gradient(135deg, #159bd3, #0b2d4d);
+      color: white;
+      text-align: center;
+    }
+
+    .cta h2 {
+      font-size: clamp(2rem, 5vw, 3.3rem);
+      margin-bottom: 16px;
+    }
+
+    .cta p {
+      color: #d7ecf8;
+      max-width: 720px;
+      margin: 0 auto 30px;
+      font-size: 1.08rem;
+    }
+
+    footer {
+      background: #071f36;
+      color: #c5d8e8;
+      padding: 60px 0 30px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 35px;
+      margin-bottom: 35px;
+    }
+
+    footer h3,
+    footer h4 {
+      color: white;
+      margin-bottom: 16px;
+    }
+
+    footer a {
+      display: block;
+      color: #c5d8e8;
+      margin-bottom: 9px;
+      font-size: 0.95rem;
+    }
+
+    footer a:hover {
+      color: #7ddcff;
+    }
+
+    .disclaimer {
+      border-top: 1px solid rgba(255,255,255,0.12);
+      padding-top: 22px;
+      font-size: 0.85rem;
+      color: #9fb4c5;
+    }
+
+    @media (max-width: 950px) {
+      .mobile-toggle { display: block; }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        width: 100%;
+        background: white;
+        padding: 20px 5%;
+        flex-direction: column;
+        align-items: flex-start;
+        border-bottom: 1px solid #dceaf3;
+      }
+
+      .nav-links.active { display: flex; }
+
+      .condition-card,
+      .condition-card:nth-child(even),
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .condition-heading {
+        position: static;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="top-bar">
+    <div><span>Call:</span> (631) 555-0248</div>
+    <div><span>Locations:</span> Huntington & Smithtown, NY</div>
+    <div><span>Email:</span> info@summitptperformance.com</div>
+  </div>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="logo">Summit <span>PT & Performance</span></a>
+
+      <div class="mobile-toggle" onclick="toggleMenu()">☰</div>
+
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="conditions.html">Conditions</a>
+        <a href="sports-rehab.html">Sports Rehab</a>
+        <a href="patient-info.html">Patient Info</a>
+        <a href="insurance.html">Insurance</a>
+        <a href="locations.html">Locations</a>
+        <a href="blog.html">Blog</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html" class="nav-cta">Request Appointment</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container hero-content">
+      <div class="eyebrow">Conditions Treated</div>
+      <h1>Support for Common Injuries and Movement Concerns</h1>
+      <p>Educational information about orthopedic, sports, post-surgical, and mobility-related concerns commonly addressed in physical therapy.</p>
+
+      <div class="btn-group">
+        <a href="contact.html" class="btn btn-primary">Request Appointment</a>
+        <a href="services.html" class="btn btn-light">View Services</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="intro">
+    <div class="container">
+      <div class="section-title">
+        <span>Educational Overview</span>
+        <h2>Understanding what physical therapy may support</h2>
+        <p>Patients visit Summit Physical Therapy & Performance for a wide range of movement concerns, injuries, post-surgical needs, and performance goals.</p>
+      </div>
+
+      <div class="notice-box">
+        <strong>Important Medical Disclaimer</strong>
+        This information is educational and not a substitute for medical advice, diagnosis, or treatment. Please consult a licensed healthcare professional regarding your specific condition and care options.
+      </div>
+    </div>
+  </section>
+
+  <section class="conditions">
+    <div class="container">
+      <div class="section-title">
+        <span>Common Concerns</span>
+        <h2>Conditions patients commonly seek care for</h2>
+        <p>Each section below is general and educational. Treatment plans vary based on individual needs, history, goals, and provider recommendations.</p>
+      </div>
+
+      <div class="condition-grid">
+
+        <div class="condition-card">
+          <div class="condition-heading">
+            <div class="condition-icon">🦴</div>
+            <h3>Back Pain</h3>
+            <p>Back discomfort can affect work, sleep, exercise, and everyday movement.</p>
+            <a href="contact.html" class="btn btn-primary">Request Appointment</a>
+          </div>
+          <div class="detail-grid">
+            <div class="detail-card">
+              <h4>Overview</h4>
+              <p>Back pain may be related to movement habits, weakness, mobility limitations, posture demands, activity changes, or injury.</p>
+            </div>
+            <div class="detail-card">
+              <h4>Common Reasons Patients Seek Care</h4>
+              <ul>
+                <li>Difficulty bending, lifting, or sitting comfortably</li>
+                <li>Stiffness with daily activity</li>
+                <li>Discomfort during exercise or work</li>
+              </ul>
+            </div>
+            <div class="detail-card">
+              <h4>How Physical Therapy May Help</h4>
+              <p>A plan may include movement assessment, strengthening, mobility work, education, and gradual return to activity.</p>
+              <div class="related-links">
+                <span class="pill">Physical Therapy</span>
+                <span class="pill">Manual Therapy</span>
+                <span class="pill">Strength Training</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="condition-card">
+          <div class="detail-grid">
+            <div class="detail-card">
+              <h4>Overview</h4>
+              <p>Neck pain may affect posture, driving, computer work, sleep, and upper body movement.</p>
+            </div>
+            <div class="detail-card">
+              <h4>Common Reasons Patients Seek Care</h4>
+              <ul>
+                <li>Stiffness or limited motion</li>
+                <li>Discomfort with desk work</li>
+                <li>Upper back and shoulder tension</li>
+              </ul>
+            </div>
+            <div class="detail-card">
+              <h4>How Physical Therapy May Help</h4>
+              <p>Care may include mobility exercises, posture education, strengthening, and movement-based strategies.</p>
+              <div class="related-links">
+                <span class="pill">Physical Therapy</span>
+                <span class="pill">Mobility Training</span>
+                <span class="pill">Manual Therapy</span>
+              </div>
+            </div>
+          </div>
+          <div class="condition-heading">
+            <div class="condition-icon">🧍</div>
+            <h3>Neck Pain</h3>
+            <p>Neck discomfort can interfere with daily tasks, work, and movement confidence.</p>
+            <a href="contact.html" class="btn btn-primary">Request Appointment</a>
+          </div>
+        </div>
+
+        <div class="condition-card">
+          <div class="condition-heading">
+            <div class="condition-icon">💪</div>
+            <h3>Shoulder Pain</h3>
+            <p>Shoulder concerns may impact lifting, reaching, sports, and daily activity.</p>
+            <a href="contact.html" class="btn btn-primary">Request Appointment</a>
+          </div>
+          <div class="detail-grid">
+            <div class="detail-card">
+              <h4>Overview</h4>
+              <p>Patients may seek care for shoulder stiffness, weakness, discomfort, or difficulty using the arm overhead.</p>
+            </div>
+            <div class="detail-card">
+              <h4>Common Reasons Patients Seek Care</h4>
+              <ul>
+                <li>Difficulty reaching overhead</li>
+                <li>Discomfort with lifting or carrying</li>
+                <li>Sports or gym-related shoulder limitations</li>
+              </ul>
+            </div>
+            <div class="detail-card">
+              <h4>How Physical Therapy May Help</h4>
+              <p>Programs may focus on shoulder mobility, rotator cuff strength, control, posture, and functional movement.</p>
+              <div class="related-links">
+                <span class="pill">Sports Rehab</span>
+                <span class="pill">Manual Therapy</span>
+                <span class="pill">Strength Training</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="condition-card">
+          <div class="detail-grid">
+            <div class="detail-card">
+              <h4>Overview</h4>
+              <p>Knee concerns may affect walking, stairs, squatting, running, training, and sport participation.</p>
+            </div>
+            <div class="detail-card">
+              <h4>Common Reasons Patients Seek Care</h4>
+              <ul>
+                <li>Difficulty with stairs or squats</li>
+                <li>Discomfort during running or sports</li>
+                <li>Post-surgical recovery needs</li>
+              </ul>
+            </div>
+            <div class="detail-card">
+              <h4>How Physical Therapy May Help</h4>
+              <p>Care may include strengthening, balance work, mobility, movement retraining, and activity progressions.</p>
+              <div class="related-links">
+                <span class="pill">Physical Therapy</span>
+                <span class="pill">Sports Rehab</span>
+                <span class="pill">Post-Surgical Rehab</span>
+              </div>
+            </div>
+          </div>
+          <div class="condition-heading">
+            <div class="condition-icon">🦵</div>
+            <h3>Knee Injuries</h3>
+            <p>Knee pain and injury can limit everyday movement and athletic performance.</p>
+            <a href="contact.html" class="btn btn-primary">Request Appointment</a>
+          </div>
+        </div>
+
+        <div class="condition-card">
+          <div class="condition-heading">
+            <div class="condition-icon">🚶</div>
+            <h3>Hip Pain</h3>
+            <p>Hip limitations may affect walking, sitting, exercise, and lower body strength.</p>
+            <a href="contact.html" class="btn btn-primary">Request Appointment</a>
+          </div>
+          <div class="detail-grid">
+            <div class="detail-card">
+              <h4>Overview</h4>
+              <p>Hip discomfort may involve mobility limitations, weakness, activity changes, or movement compensation.</p>
+            </div>
+            <div class="detail-card">
+              <h4>Common Reasons Patients Seek Care</h4>
+              <ul>
+                <li>Discomfort with walking or stairs</li>
+                <li>Difficulty squatting or exercising</li>
+                <li>Stiffness after sitting</li>
+              </ul>
+            </div>
+            <div class="detail-card">
+              <h4>How Physical Therapy May Help</h4>
+              <p>Treatment may include hip mobility, glute strengthening, balance, gait training, and functional movement work.</p>
+              <div class="related-links">
+                <span class="pill">Physical Therapy</span>
+                <span class="pill">Strength Training</span>
+                <span class="pill">Mobility Work</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="condition-card">
+          <div class="detail-grid">
+            <div class="detail-card">
+              <h4>Overview</h4>
+              <p>Ankle injuries can affect walking, balance, running, jumping, and confidence on uneven surfaces.</p>
+            </div>
+            <div class="detail-card">
+              <h4>Common Reasons Patients Seek Care</h4>
+              <ul>
+                <li>Ankle sprains</li>
+                <li>Instability or fear of re-injury</li>
+                <li>Difficulty returning to sport or exercise</li>
+              </ul>
+            </div>
+            <div class="detail-card">
+              <h4>How Physical Therapy May Help</h4>
+              <p>Programs may include mobility, strengthening, balance, coordination, and return-to-activity progressions.</p>
+              <div class="related-links">
+                <span class="pill">Sports Rehab</span>
+                <span class="pill">Balance Training</span>
+                <span class="pill">Return-To-Sport</span>
+              </div>
+            </div>
+          </div>
+          <div class="condition-heading">
+            <div class="condition-icon">🦶</div>
+            <h3>Ankle Injuries</h3>
+            <p>Ankle concerns often require balance, strength, and movement confidence.</p>
+            <a href="contact.html" class="btn btn-primary">Request Appointment</a>
+          </div>
+        </div>
+
+        <div class="condition-card">
+          <div class="condition-heading">
+            <div class="condition-icon">🏀</div>
+            <h3>Sports Injuries</h3>
+            <p>Sports injuries may affect training, competition, confidence, and performance.</p>
+            <a href="sports-rehab.html" class="btn btn-primary">Sports Rehab</a>
+          </div>
+          <div class="detail-grid">
+            <div class="detail-card">
+              <h4>Overview</h4>
+              <p>Athletes may need structured rehabilitation that considers sport demands, strength, mobility, and return-to-play goals.</p>
+            </div>
+            <div class="detail-card">
+              <h4>Common Reasons Patients Seek Care</h4>
+              <ul>
+                <li>Sprains, strains, and overuse injuries</li>
+                <li>Return-to-sport planning</li>
+                <li>Performance limitations after injury</li>
+              </ul>
+            </div>
+            <div class="detail-card">
+              <h4>How Physical Therapy May Help</h4>
+              <p>A plan may include progressive strength, mobility, agility, control, and sport-specific drills.</p>
+              <div class="related-links">
+                <span class="pill">Sports Rehab</span>
+                <span class="pill">Strength & Conditioning</span>
+                <span class="pill">Injury Prevention</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="condition-card">
+          <div class="detail-grid">
+            <div class="detail-card">
+              <h4>Overview</h4>
+              <p>Arthritis-related concerns may affect mobility, strength, comfort, and daily independence.</p>
+            </div>
+            <div class="detail-card">
+              <h4>Common Reasons Patients Seek Care</h4>
+              <ul>
+                <li>Joint stiffness</li>
+                <li>Difficulty with daily activities</li>
+                <li>Reduced confidence with movement</li>
+              </ul>
+            </div>
+            <div class="detail-card">
+              <h4>How Physical Therapy May Help</h4>
+              <p>Care may include gentle mobility work, strengthening, pacing strategies, balance, and functional training.</p>
+              <div class="related-links">
+                <span class="pill">Physical Therapy</span>
+                <span class="pill">Balance Training</span>
+                <span class="pill">Strength Work</span>
+              </div>
+            </div>
+          </div>
+          <div class="condition-heading">
+            <div class="condition-icon">🌿</div>
+            <h3>Arthritis</h3>
+            <p>Movement-based care may support patients managing joint stiffness and activity limitations.</p>
+            <a href="contact.html" class="btn btn-primary">Request Appointment</a>
+          </div>
+        </div>
+
+        <div class="condition-card">
+          <div class="condition-heading">
+            <div class="condition-icon">⚖️</div>
+            <h3>Balance Disorders</h3>
+            <p>Balance concerns can affect confidence, walking, safety, and daily independence.</p>
+            <a href="contact.html" class="btn btn-primary">Request Appointment</a>
+          </div>
+          <div class="detail-grid">
+            <div class="detail-card">
+              <h4>Overview</h4>
+              <p>Patients may seek care for unsteadiness, reduced confidence, difficulty walking, or concerns about falling.</p>
+            </div>
+            <div class="detail-card">
+              <h4>Common Reasons Patients Seek Care</h4>
+              <ul>
+                <li>Feeling unsteady</li>
+                <li>Concerns about falls</li>
+                <li>Difficulty with stairs or uneven ground</li>
+              </ul>
+            </div>
+            <div class="detail-card">
+              <h4>How Physical Therapy May Help</h4>
+              <p>Programs may include balance activities, walking practice, strengthening, coordination, and functional mobility.</p>
+              <div class="related-links">
+                <span class="pill">Balance Training</span>
+                <span class="pill">Fall Prevention</span>
+                <span class="pill">Functional Movement</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="condition-card">
+          <div class="detail-grid">
+            <div class="detail-card">
+              <h4>Overview</h4>
+              <p>Post-surgical rehabilitation is typically guided by procedure type, provider recommendations, healing timelines, and patient goals.</p>
+            </div>
+            <div class="detail-card">
+              <h4>Common Reasons Patients Seek Care</h4>
+              <ul>
+                <li>Orthopedic procedures</li>
+                <li>Reduced strength or mobility after surgery</li>
+                <li>Gradual return to daily activity or sport</li>
+              </ul>
+            </div>
+            <div class="detail-card">
+              <h4>How Physical Therapy May Help</h4>
+              <p>Care may focus on restoring movement, improving strength, rebuilding confidence, and progressing activity safely.</p>
+              <div class="related-links">
+                <span class="pill">Post-Surgical Rehab</span>
+                <span class="pill">Physical Therapy</span>
+                <span class="pill">Strength Training</span>
+              </div>
+            </div>
+          </div>
+          <div class="condition-heading">
+            <div class="condition-icon">🏥</div>
+            <h3>Post-Surgical Recovery</h3>
+            <p>Structured support for patients recovering after orthopedic procedures.</p>
+            <a href="contact.html" class="btn btn-primary">Request Appointment</a>
+          </div>
+        </div>
+
+        <div class="condition-card">
+          <div class="condition-heading">
+            <div class="condition-icon">🔄</div>
+            <h3>Mobility Limitations</h3>
+            <p>Limited mobility may affect exercise, daily tasks, posture, and movement confidence.</p>
+            <a href="contact.html" class="btn btn-primary">Request Appointment</a>
+          </div>
+          <div class="detail-grid">
+            <div class="detail-card">
+              <h4>Overview</h4>
+              <p>Mobility limitations may occur after injury, inactivity, surgery, training changes, or ongoing movement restrictions.</p>
+            </div>
+            <div class="detail-card">
+              <h4>Common Reasons Patients Seek Care</h4>
+              <ul>
+                <li>Stiffness with daily movement</li>
+                <li>Difficulty performing exercises</li>
+                <li>Feeling restricted during activity</li>
+              </ul>
+            </div>
+            <div class="detail-card">
+              <h4>How Physical Therapy May Help</h4>
+              <p>Care may include mobility exercises, strengthening, movement education, and functional progressions.</p>
+              <div class="related-links">
+                <span class="pill">Mobility Work</span>
+                <span class="pill">Manual Therapy</span>
+                <span class="pill">Physical Therapy</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="condition-card">
+          <div class="detail-grid">
+            <div class="detail-card">
+              <h4>Overview</h4>
+              <p>Work-related injuries and movement concerns may affect job performance, daily function, and confidence returning to work tasks.</p>
+            </div>
+            <div class="detail-card">
+              <h4>Common Reasons Patients Seek Care</h4>
+              <ul>
+                <li>Lifting or repetitive movement injuries</li>
+                <li>Difficulty returning to job duties</li>
+                <li>Mobility or strength limitations at work</li>
+              </ul>
+            </div>
+            <div class="detail-card">
+              <h4>How Physical Therapy May Help</h4>
+              <p>Programs may focus on functional strengthening, education, movement strategies, and gradual progression toward work demands.</p>
+              <div class="related-links">
+                <span class="pill">Physical Therapy</span>
+                <span class="pill">Functional Training</span>
+                <span class="pill">Strength Work</span>
+              </div>
+            </div>
+          </div>
+          <div class="condition-heading">
+            <div class="condition-icon">🛠️</div>
+            <h3>Work-Related Injuries</h3>
+            <p>Support for patients working toward safer, more confident job-related movement.</p>
+            <a href="contact.html" class="btn btn-primary">Request Appointment</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="intro">
+    <div class="container">
+      <div class="notice-box">
+        <strong>Not sure where to start?</strong>
+        Our team can help you determine the most appropriate next step based on your movement concerns, goals, and provider recommendations. This website does not replace medical evaluation or professional healthcare advice.
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="container">
+      <h2>Take the first step toward moving better.</h2>
+      <p>Request an appointment with Summit Physical Therapy & Performance and learn how our team can help you work toward your goals.</p>
+
+      <div class="btn-group" style="justify-content:center;">
+        <a href="contact.html" class="btn btn-light">Request Appointment</a>
+        <a href="tel:6315550248" class="btn btn-primary">Call Now</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <h3>Summit Physical Therapy & Performance</h3>
+        <p>Personalized physical therapy and sports rehabilitation for Long Island patients.</p>
+        <br>
+        <p><strong>Phone:</strong> (631) 555-0248</p>
+        <p><strong>Email:</strong> info@summitptperformance.com</p>
+      </div>
+
+      <div>
+        <h4>Quick Links</h4>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="conditions.html">Conditions</a>
+        <a href="sports-rehab.html">Sports Rehab</a>
+        <a href="contact.html">Contact</a>
+      </div>
+
+      <div>
+        <h4>Services</h4>
+        <a href="services.html">Physical Therapy</a>
+        <a href="services.html">Sports Rehab</a>
+        <a href="services.html">Post-Surgical Rehab</a>
+        <a href="services.html">Balance Training</a>
+      </div>
+
+      <div>
+        <h4>Locations</h4>
+        <a href="locations.html">Huntington</a>
+        <a href="locations.html">Smithtown</a>
+        <a href="patient-info.html">Patient Info</a>
+        <a href="insurance.html">Insurance</a>
+      </div>
+    </div>
+
+    <div class="container disclaimer">
+      Website content is for general informational purposes only and is not medical advice. Please consult a licensed healthcare professional for diagnosis and treatment recommendations.
+      <br><br>
+      © 2026 Summit Physical Therapy & Performance. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("navLinks").classList.toggle("active");
+    }
+  </script>
+
+</body>
+</html>
