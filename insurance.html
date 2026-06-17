@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Insurance & Payment | Summit Physical Therapy & Performance</title>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: Arial, sans-serif; color: #102033; background: #f7fbff; line-height: 1.6; overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; }
+    .container { width: 90%; max-width: 1200px; margin: auto; }
+    section { padding: 90px 0; }
+
+    .top-bar { background:#0b2d4d; color:white; padding:10px 5%; font-size:.9rem; display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap; }
+    .top-bar span { color:#b9ecff; }
+
+    nav { position:sticky; top:0; z-index:1000; background:rgba(255,255,255,.96); backdrop-filter:blur(14px); border-bottom:1px solid #ddebf5; }
+    .nav-inner { display:flex; align-items:center; justify-content:space-between; padding:18px 5%; }
+    .logo { font-size:1.35rem; font-weight:900; color:#0b2d4d; line-height:1.1; }
+    .logo span { color:#159bd3; }
+    .nav-links { display:flex; align-items:center; gap:20px; font-weight:700; font-size:.92rem; color:#41556b; }
+    .nav-links a:hover { color:#159bd3; }
+    .nav-cta { background:#159bd3; color:white!important; padding:11px 18px; border-radius:999px; }
+    .mobile-toggle { display:none; font-size:1.7rem; cursor:pointer; color:#0b2d4d; }
+
+    .hero {
+      min-height:70vh;
+      display:grid;
+      align-items:center;
+      background:linear-gradient(90deg,rgba(8,45,77,.94),rgba(8,45,77,.62)),
+      url("https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1800&q=80") center/cover no-repeat;
+      color:white;
+      padding:95px 0;
+    }
+
+    .hero-content { max-width:790px; }
+    .eyebrow { color:#7ddcff; text-transform:uppercase; letter-spacing:2px; font-weight:900; font-size:.85rem; margin-bottom:16px; }
+    .hero h1 { font-size:clamp(3rem,7vw,5.4rem); line-height:1; margin-bottom:24px; letter-spacing:-2px; }
+    .hero p { font-size:1.18rem; max-width:700px; color:#e6f6ff; margin-bottom:34px; }
+
+    .btn-group { display:flex; gap:14px; flex-wrap:wrap; }
+    .btn { display:inline-block; padding:15px 24px; border-radius:999px; font-weight:900; transition:.3s ease; }
+    .btn-primary { background:#159bd3; color:white; box-shadow:0 14px 35px rgba(21,155,211,.3); }
+    .btn-primary:hover { background:#0c78a8; transform:translateY(-3px); }
+    .btn-light { background:white; color:#0b2d4d; }
+    .btn-light:hover { transform:translateY(-3px); background:#eaf7fc; }
+
+    .section-title { text-align:center; max-width:850px; margin:0 auto 55px; }
+    .section-title span { color:#159bd3; text-transform:uppercase; font-weight:900; letter-spacing:2px; font-size:.85rem; }
+    .section-title h2 { font-size:clamp(2rem,5vw,3.2rem); color:#0b2d4d; margin-top:12px; line-height:1.1; }
+    .section-title p { color:#5e7388; margin-top:15px; font-size:1.05rem; }
+
+    .verify { background:white; }
+    .grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:22px; }
+    .grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+    .grid-2 { display:grid; grid-template-columns:repeat(2,1fr); gap:24px; }
+
+    .card {
+      background:white;
+      padding:30px;
+      border-radius:24px;
+      border:1px solid #dceaf3;
+      box-shadow:0 16px 40px rgba(16,32,51,.08);
+      transition:.3s ease;
+    }
+
+    .card:hover { transform:translateY(-7px); box-shadow:0 22px 55px rgba(16,32,51,.13); }
+    .icon { width:54px; height:54px; border-radius:16px; display:grid; place-items:center; background:#e5f7ff; color:#159bd3; font-size:1.7rem; margin-bottom:18px; }
+    .card h3 { color:#0b2d4d; margin-bottom:10px; font-size:1.25rem; }
+    .card p, .card li { color:#60758b; }
+    .card ul { padding-left:20px; margin-top:10px; }
+
+    .plans { background:#eef7fc; }
+    .plan-card { text-align:center; }
+    .plan-card h3 { font-size:1.35rem; }
+
+    .split-section { background:white; }
+    .split {
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:35px;
+      align-items:stretch;
+    }
+
+    .highlight {
+      background:#0b2d4d;
+      color:white;
+      border-radius:28px;
+      padding:42px;
+      box-shadow:0 20px 50px rgba(16,32,51,.14);
+    }
+
+    .highlight h2 { font-size:2.2rem; margin-bottom:18px; }
+    .highlight p { color:#d7ecf8; margin-bottom:16px; }
+
+    .faq { background:#eef7fc; }
+    .faq-item {
+      background:white;
+      border:1px solid #dceaf3;
+      border-radius:20px;
+      padding:24px;
+      box-shadow:0 12px 30px rgba(16,32,51,.06);
+    }
+
+    .faq-item h3 { color:#0b2d4d; margin-bottom:8px; font-size:1.1rem; }
+    .faq-item p { color:#60758b; }
+
+    .notice { background:white; }
+    .notice-box {
+      background:#eef7fc;
+      border:1px solid #cce7f5;
+      border-left:6px solid #159bd3;
+      border-radius:20px;
+      padding:28px;
+      color:#40566d;
+      max-width:950px;
+      margin:auto;
+    }
+
+    .notice-box strong { color:#0b2d4d; display:block; margin-bottom:8px; font-size:1.15rem; }
+
+    .cta { background:linear-gradient(135deg,#159bd3,#0b2d4d); color:white; text-align:center; }
+    .cta h2 { font-size:clamp(2rem,5vw,3.3rem); margin-bottom:16px; }
+    .cta p { color:#d7ecf8; max-width:720px; margin:0 auto 30px; font-size:1.08rem; }
+
+    footer { background:#071f36; color:#c5d8e8; padding:60px 0 30px; }
+    .footer-grid { display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr; gap:35px; margin-bottom:35px; }
+    footer h3, footer h4 { color:white; margin-bottom:16px; }
+    footer a { display:block; color:#c5d8e8; margin-bottom:9px; font-size:.95rem; }
+    footer a:hover { color:#7ddcff; }
+    .disclaimer { border-top:1px solid rgba(255,255,255,.12); padding-top:22px; font-size:.85rem; color:#9fb4c5; }
+
+    @media(max-width:950px) {
+      .mobile-toggle { display:block; }
+      .nav-links { display:none; position:absolute; top:72px; left:0; width:100%; background:white; padding:20px 5%; flex-direction:column; align-items:flex-start; border-bottom:1px solid #dceaf3; }
+      .nav-links.active { display:flex; }
+      .grid-4, .grid-3, .grid-2, .split, .footer-grid { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="top-bar">
+    <div><span>Call:</span> (631) 555-0248</div>
+    <div><span>Locations:</span> Huntington & Smithtown, NY</div>
+    <div><span>Email:</span> info@summitptperformance.com</div>
+  </div>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="logo">Summit <span>PT & Performance</span></a>
+      <div class="mobile-toggle" onclick="toggleMenu()">☰</div>
+
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="conditions.html">Conditions</a>
+        <a href="sports-rehab.html">Sports Rehab</a>
+        <a href="patient-info.html">Patient Info</a>
+        <a href="insurance.html">Insurance</a>
+        <a href="locations.html">Locations</a>
+        <a href="blog.html">Blog</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html" class="nav-cta">Request Appointment</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container hero-content">
+      <div class="eyebrow">Insurance & Payment</div>
+      <h1>Helping You Understand Coverage Before Your First Visit</h1>
+      <p>Our team can help review insurance information, explain the verification process, and answer general billing questions before you begin care.</p>
+
+      <div class="btn-group">
+        <a href="contact.html" class="btn btn-primary">Request Appointment</a>
+        <a href="tel:6315550248" class="btn btn-light">Call Now</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="verify">
+    <div class="container">
+      <div class="section-title">
+        <span>Verification Process</span>
+        <h2>A simple process before your visit</h2>
+        <p>Insurance can be confusing. Summit Physical Therapy & Performance helps patients gather information and understand next steps.</p>
+      </div>
+
+      <div class="grid-4">
+        <div class="card">
+          <div class="icon">📞</div>
+          <h3>Contact Our Office</h3>
+          <p>Reach out by phone or through our appointment request form.</p>
+        </div>
+
+        <div class="card">
+          <div class="icon">💳</div>
+          <h3>Provide Insurance Info</h3>
+          <p>Share your insurance card details and basic appointment information.</p>
+        </div>
+
+        <div class="card">
+          <div class="icon">🔎</div>
+          <h3>Benefits Review</h3>
+          <p>Our team can help review general benefit information before your first visit.</p>
+        </div>
+
+        <div class="card">
+          <div class="icon">📅</div>
+          <h3>Schedule Your Visit</h3>
+          <p>Once information is reviewed, we help schedule the location and time that works best.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="plans">
+    <div class="container">
+      <div class="section-title">
+        <span>Insurance Plans</span>
+        <h2>Common insurance options patients ask about</h2>
+        <p>Summit works with many major insurance providers. Participation and coverage vary by plan.</p>
+      </div>
+
+      <div class="grid-4">
+        <div class="card plan-card"><div class="icon">🛡️</div><h3>BlueCross BlueShield</h3><p>Plan details vary by employer, network, and individual benefits.</p></div>
+        <div class="card plan-card"><div class="icon">🏥</div><h3>Aetna</h3><p>Our office can help review general plan information before scheduling.</p></div>
+        <div class="card plan-card"><div class="icon">✅</div><h3>Cigna</h3><p>Coverage, copays, and referral requirements vary by plan.</p></div>
+        <div class="card plan-card"><div class="icon">📋</div><h3>UnitedHealthcare</h3><p>Benefit verification can help clarify general coverage details.</p></div>
+        <div class="card plan-card"><div class="icon">⭐</div><h3>Medicare</h3><p>Medicare-related coverage questions can be discussed with our office.</p></div>
+        <div class="card plan-card"><div class="icon">🚗</div><h3>No-Fault Insurance</h3><p>Motor vehicle accident cases may be discussed with our administrative team.</p></div>
+        <div class="card plan-card"><div class="icon">🛠️</div><h3>Workers’ Compensation</h3><p>Work-related cases may require additional claim and provider information.</p></div>
+        <div class="card plan-card"><div class="icon">🌐</div><h3>Out-of-Network Benefits</h3><p>Some plans may offer out-of-network reimbursement depending on benefits.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="split-section">
+    <div class="container split">
+      <div class="highlight">
+        <h2>Out-of-Network Benefits</h2>
+        <p>Some insurance plans may provide out-of-network benefits for physical therapy services. Reimbursement, deductibles, and documentation requirements vary by plan.</p>
+        <p>Our office can help answer general questions, but patients should always confirm benefits directly with their insurance provider.</p>
+        <a href="contact.html" class="btn btn-light">Ask About Benefits</a>
+      </div>
+
+      <div class="highlight" style="background:#159bd3;">
+        <h2>Self-Pay Options</h2>
+        <p>Patients without coverage, or those choosing not to use insurance, may ask about self-pay options.</p>
+        <p>Self-pay visits may be useful for performance-based care, wellness-focused sessions, or patients with limited insurance benefits.</p>
+        <a href="contact.html" class="btn btn-light">Contact Our Office</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq">
+    <div class="container">
+      <div class="section-title">
+        <span>Billing FAQ</span>
+        <h2>Common insurance questions</h2>
+      </div>
+
+      <div class="grid-2">
+        <div class="faq-item">
+          <h3>Do I need a referral?</h3>
+          <p>Referral requirements depend on your insurance plan and individual situation. Our office can help explain what may be needed.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Will insurance cover physical therapy?</h3>
+          <p>Coverage varies by plan. Benefits, copays, deductibles, and visit limits are different for each patient.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>What if my plan has a copay?</h3>
+          <p>If your plan includes a copay, that amount may be due at the time of service. Plan details should be confirmed with your insurer.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Can I use out-of-network benefits?</h3>
+          <p>Some patients may have out-of-network coverage. Your insurance provider can confirm eligibility and reimbursement rules.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Do you offer self-pay visits?</h3>
+          <p>Patients may contact the office to ask about direct payment options and availability.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Can you verify my benefits?</h3>
+          <p>Our office can help review general benefit information, but verification is not a guarantee of payment or coverage.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="notice">
+    <div class="container">
+      <div class="notice-box">
+        <strong>Insurance Disclaimer</strong>
+        Insurance benefits, eligibility, deductibles, copays, visit limits, and coverage vary by individual plan. Information provided by our office is not a guarantee of payment or coverage. Patients remain responsible for understanding their insurance benefits and any patient responsibility amounts.
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="container">
+      <h2>Questions about insurance?</h2>
+      <p>Contact Summit Physical Therapy & Performance and our team can help you understand the general verification process before your appointment.</p>
+
+      <div class="btn-group" style="justify-content:center;">
+        <a href="contact.html" class="btn btn-light">Contact Our Team</a>
+        <a href="tel:6315550248" class="btn btn-primary">Call Now</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <h3>Summit Physical Therapy & Performance</h3>
+        <p>Personalized physical therapy and sports rehabilitation for Long Island patients.</p>
+        <br>
+        <p><strong>Phone:</strong> (631) 555-0248</p>
+        <p><strong>Email:</strong> info@summitptperformance.com</p>
+      </div>
+
+      <div>
+        <h4>Quick Links</h4>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="conditions.html">Conditions</a>
+        <a href="sports-rehab.html">Sports Rehab</a>
+        <a href="contact.html">Contact</a>
+      </div>
+
+      <div>
+        <h4>Services</h4>
+        <a href="services.html">Physical Therapy</a>
+        <a href="services.html">Sports Rehab</a>
+        <a href="services.html">Post-Surgical Rehab</a>
+        <a href="services.html">Balance Training</a>
+      </div>
+
+      <div>
+        <h4>Locations</h4>
+        <a href="locations.html">Huntington</a>
+        <a href="locations.html">Smithtown</a>
+        <a href="patient-info.html">Patient Info</a>
+        <a href="insurance.html">Insurance</a>
+      </div>
+    </div>
+
+    <div class="container disclaimer">
+      Website content is for general informational purposes only and is not medical advice. Please consult a licensed healthcare professional for diagnosis and treatment recommendations.
+      <br><br>
+      © 2026 Summit Physical Therapy & Performance. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("navLinks").classList.toggle("active");
+    }
+  </script>
+
+</body>
+</html>
